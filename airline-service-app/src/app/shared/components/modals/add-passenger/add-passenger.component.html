@@ -1,0 +1,172 @@
+<div class="offcanvas-header">
+  <h1 id="editPassengerLabel"><strong>Add Passenger</strong></h1>
+  <button type="button" class="btn-close btn-lg btn-danger text-reset" data-bs-dismiss="offcanvas"
+    aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+  <div class="form-box col-xs-12 mt-2">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()" novalidate class="form">
+      <div class="form-group mb-4">
+        <div class="controls mb-2">
+          <label for="firstname"><strong>First Name <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="firstname" placeholder="Enter your firstname" class="form-control"
+            formControlName="firstname" />
+          <p class="lblError text-danger" *ngIf="
+      createForm.get('firstname').hasError('required') &&
+      createForm.get('firstname').touched
+    ">
+            Enter your First Name
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="lastname"><strong>Last Name <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="lastname" placeholder="Enter your lastname" class="form-control"
+            formControlName="lastname" />
+          <p class="lblError text-danger" *ngIf="
+      createForm.get('lastname').hasError('required') &&
+      createForm.get('lastname').touched
+    ">
+            Enter your Last Name
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="passport_number"><strong>Passport Number <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input type="text" id="passport_number" placeholder="Enter your passport_number" class="form-control"
+            formControlName="passport_number" />
+          <p class="lblError text-danger" *ngIf="
+      createForm.get('passport_number').hasError('required') &&
+      createForm.get('passport_number').touched
+    ">
+            Enter your Passport Number
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="birth_date"><strong>Date of Birth <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="date" id="birth_date" placeholder="DD/MM/YYYY" class="form-control"
+            formControlName="birth_date" />
+          <p class="lblError text-danger" *ngIf="
+      createForm.get('birth_date').hasError('required') &&
+      createForm.get('birth_date').touched
+    ">
+            Enter your Date of Birth
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="address"><strong>Address <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="address" placeholder="Enter your address" class="form-control"
+            formControlName="address" required />
+          <p class="lblError text-danger" *ngIf="
+      createForm.get('address').hasError('required') &&
+      createForm.get('address').touched
+    ">
+            Enter your Address
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="flight_id"><strong>Flight Number <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="flight_id" placeholder="Enter your flight_id" class="form-control"
+            formControlName="flight_id" />
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('flight_id').hasError('required') &&
+        createForm.get('flight_id').touched
+      ">
+            Enter your Flight Number
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="seat_number"><strong>Seat Number <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="seat_number" placeholder="Enter your seat_number" class="form-control"
+            formControlName="seat_number" />
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('seat_number').hasError('required') &&
+        createForm.get('seat_number').touched
+      ">
+            Enter your Seat Number
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="checked_in" class="me-2"><strong>Checked In <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="checked_in" formControlName="checked_in"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="checked_in" formControlName="checked_in"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('checked_in').hasError('required') &&
+        createForm.get('checked_in').touched
+      ">
+            Enter your Checked In Status
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="infants" class="me-2"><strong>Infants <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="infants" formControlName="infants"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="infants" formControlName="infants" class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('infants').hasError('required') &&
+        createForm.get('infants').touched
+      ">
+            Enter your Infants
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="wheel_chair" class="me-2"><strong>Wheel Chair <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="wheel_chair" formControlName="wheel_chair"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="wheel_chair" formControlName="wheel_chair"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('wheel_chair').hasError('required') &&
+        createForm.get('wheel_chair').touched
+      ">
+            Enter your Wheel Chair
+          </p>
+        </div>
+
+        <div class="controls mb-4">
+          <label for="ancillary_services" class="me-2"><strong>Ancillary Services <span
+                class="lblError text-danger">*</span> : </strong></label>
+          <input id="yes" type="radio" value="yes" name="ancillary_services" formControlName="ancillary_services"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="ancillary_services" formControlName="ancillary_services"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+        createForm.get('ancillary_services').hasError('required') &&
+        createForm.get('ancillary_services').touched
+      ">
+            Enter your Ancillary Services
+          </p>
+          <p class="text-info"><strong>Wifi is included by default!</strong></p>
+        </div>
+
+        <div class="controls mb-4">
+          <button class="btn btn-block me-2" type="button" style="background-color: #73648a; color: #f9f8f8"
+            data-bs-dismiss="offcanvas">Cancel</button>
+          <button class="btn btn-success btn-block" type="submit" [disabled]="!createForm.valid">Save</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

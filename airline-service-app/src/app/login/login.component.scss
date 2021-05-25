@@ -1,0 +1,37 @@
+.container-fluid{
+    background-repeat: no-repeat;
+    background-position:center;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-size: 100% 100%;
+    justify-content: center;
+    align-items: center;
+
+    .login{
+
+        h1{
+            font-family: Brush Script MT, Brush Script Std, cursive;
+            font-size: 4rem;
+            color: #a393bf;
+        }
+
+        hr{
+            color: #73648a;
+        }
+        
+        label{
+            color: #9882ac;
+        }
+
+        @media (max-width: 360px) { 
+            padding: 20px;
+
+            h1{
+                font-size: 2.8rem;
+            }
+        }
+        
+    }
+    
+}

@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class="container" *ngIf="isAdmin">
+    <div class="row mt-4 mb-2">
+      <div class="col-md-3">
+        <div class="btn-group dropend">
+          <button type="button" class="btn btn-outline-dark dropdown-toggle" style="background-color: #73648a"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Select filter
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" (click)="getPassengersByPassport()">Empty Passport Field</button></li>
+            <li><button class="dropdown-item" (click)="getPassengersByAddress()">Empty Address Field</button></li>
+            <li><button class="dropdown-item" (click)="getPassengersByDOB()">Empty Date of Birth Field</button></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><button class="dropdown-item" (click)="getPassengers()">Remove Filter</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 ms-auto">
+        <button class="btn btn-light me-2" style="background-color: #73648a" data-bs-toggle="offcanvas"
+          data-bs-target="#addPassenger" aria-controls="addPassenger"> Add Passenger
+          <img src="../../../../assets/images/svg/edit.svg" alt="edit passenger" />
+        </button>
+        <button class="btn btn-block" style="background-color: #73648a" (click)="onRefresh()">
+          <img src="../../../../assets/images/svg/refresh.svg" alt="refresh" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="isStaff">
+    <div class="col-md-3 mt-4 mb-2">
+      <div class="btn-group dropend">
+        <button type="button" class="btn btn-block dropdown-toggle" style="background-color: #73648a"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Select filter
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item" (click)="getPassengersCheckedIn()">Checked-In</button></li>
+          <li><button class="dropdown-item" (click)="getPassengersNotCheckedIn()">Not Checked-In</button></li>
+          <li><button class="dropdown-item" (click)="getPassengersInfants()">Infants</button></li>
+          <li><button class="dropdown-item" (click)="getPassengersWheelChair()">Wheel Chair</button></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><button class="dropdown-item" (click)="getPassengers()">Remove Filter</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Seat Number</th>
+        <th scope="col">Ancillary Services</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let passenger of passengers">
+        <td>{{ passenger.firstname }}</td>
+        <td>{{ passenger.lastname }}</td>
+        <td>{{ passenger.seat_number }}</td>
+        <td>
+          <p *ngFor="let service of passenger.services"> {{ service }} </p>
+        </td>
+        <td>
+          <button (click)="getPassenger(passenger)" class="btn btn-block btn-sm" style="background-color: #73648a"
+            data-bs-toggle="offcanvas" data-bs-target="#editPassenger" aria-controls="editPassenger" *ngIf="isAdmin">
+            <img src="../../../../assets/images/svg/edit.svg" alt="edit" />
+          </button>
+          <button (click)="getPassenger(passenger)" class="btn btn-block btn-sm" style="background-color: #73648a"
+            data-bs-toggle="offcanvas" data-bs-target="#passengerDetails" aria-controls="passengerDetails"
+            *ngIf="!isAdmin">
+            <img src="../../../../assets/images/svg/edit.svg" alt="edit" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-add-passenger class="offcanvas offcanvas-end" tabindex="-1" id="addPassenger" aria-labelledby="addPassengerLabel">
+</app-add-passenger>
+<app-edit-passenger class="offcanvas offcanvas-end" tabindex="-1" id="editPassenger"
+  aria-labelledby="editPassengerLabel" [id_passenger]="id_passenger"></app-edit-passenger>
+<app-passenger-details class="offcanvas offcanvas-end" tabindex="-1" id="passengerDetails"
+  aria-labelledby="passengerDetailsLabel" [id_passenger]="id_passenger"></app-passenger-details>

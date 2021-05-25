@@ -1,0 +1,144 @@
+<div class="offcanvas-header">
+  <h1 id="editPassengerLabel"><strong>Edit Passenger</strong></h1>
+  <button type="button" class="btn-close btn-lg btn-danger text-reset" data-bs-dismiss="offcanvas"
+    aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+  <div class="form-box col-xs-12 mt-2">
+    <button class="btn btn-block mb-4" style="background-color: #73648a;" (click)="getPassengers()">Load
+      Details</button>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate class="form">
+      <div class="form-group mb-4">
+        <div class="controls mb-2">
+          <label for="firstname"><strong>First Name <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="firstname" placeholder="Enter your firstname" class="form-control"
+            formControlName="firstname" />
+          <p class="lblError text-danger" *ngIf="
+              editForm.get('firstname').hasError('required') &&
+              editForm.get('firstname').touched
+            ">
+            Enter your First Name
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="lastname"><strong>Last Name <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="text" id="lastname" placeholder="Enter your lastname" class="form-control"
+            formControlName="lastname" />
+          <p class="lblError text-danger" *ngIf="
+              editForm.get('lastname').hasError('required') &&
+              editForm.get('lastname').touched
+            ">
+            Enter your Last Name
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="passport_number"><strong>Passport Number : </strong></label>
+          <input readonly id="passport_number" class="form-control-plaintext" formControlName="passport_number" />
+        </div>
+
+        <div class="controls mb-2">
+          <label for="birth_date"><strong>Birth Date : </strong></label>
+          <input readonly id="birth_date" class="form-control-plaintext" formControlName="birth_date" />
+        </div>
+
+        <div class="controls mb-2">
+          <label for="address"><strong>Address : </strong></label>
+          <input readonly id="address" class="form-control-plaintext" formControlName="address" />
+        </div>
+
+        <div class="controls mb-2">
+          <label for="flight_id"><strong>Flight Number> : </strong></label>
+          <input readonly id="flight_id" class="form-control-plaintext" formControlName="flight_id" />
+        </div>
+
+        <div class="controls mb-2">
+          <label for="seat_number"><strong>Seat Number <span class="lblError text-danger">*</span> : </strong></label>
+          <input type="seat_number" id="text" placeholder="Enter your seat_number" class="form-control"
+            formControlName="seat_number" />
+          <p class="lblError text-danger" *ngIf="
+                editForm.get('seat_number').hasError('required') &&
+                editForm.get('seat_number').touched
+              ">
+            Enter your Seat Number
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="checked_in" class="me-2"><strong>Checked In <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="checked_in" formControlName="checked_in"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="checked_in" formControlName="checked_in"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+                  editForm.get('checked_in').hasError('required') &&
+                  editForm.get('checked_in').touched
+                ">
+            Enter your Checked In Status
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="infants" class="me-2"><strong>Infants <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="infants" formControlName="infants"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="infants" formControlName="infants" class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+                  editForm.get('infants').hasError('required') &&
+                  editForm.get('infants').touched
+                ">
+            Enter your Infants
+          </p>
+        </div>
+
+        <div class="controls mb-2">
+          <label for="wheel_chair" class="me-2"><strong>Wheel Chair <span class="lblError text-danger">*</span> :
+            </strong></label>
+          <input id="yes" type="radio" value="yes" name="wheel_chair" formControlName="wheel_chair"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="wheel_chair" formControlName="wheel_chair"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+                  editForm.get('wheel_chair').hasError('required') &&
+                  editForm.get('wheel_chair').touched
+                ">
+            Enter your Wheel Chair
+          </p>
+        </div>
+
+        <div class="controls mb-4">
+          <label for="ancillary_services" class="me-2"><strong>Ancillary Services <span
+                class="lblError text-danger">*</span> : </strong></label>
+          <input id="yes" type="radio" value="yes" name="ancillary_services" formControlName="ancillary_services"
+            class="me-2 form-check-input">
+          <label for="yes" class="me-2">Yes</label>
+          <input id="no" type="radio" value="no" name="ancillary_services" formControlName="ancillary_services"
+            class="me-2 form-check-input">
+          <label for="no">No</label>
+          <p class="lblError text-danger" *ngIf="
+                  editForm.get('ancillary_services').hasError('required') &&
+                  editForm.get('ancillary_services').touched
+                ">
+            Enter your Ancillary Services
+          </p>
+        </div>
+
+        <div class="controls mb-4">
+          <button class="btn btn-block me-2" type="button" style="background-color: #7e7f9a; color: #f9f8f8"
+            data-bs-dismiss="offcanvas">Cancel</button>
+          <button class="btn btn-success btn-block" type="submit" [disabled]="!editForm.valid">Save</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

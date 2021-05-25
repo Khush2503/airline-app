@@ -1,0 +1,95 @@
+<div class="container-fluid mt-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col" *ngFor="let flight of flights">
+            <div class="card">
+                <img src="https://entrackr.com/wp-content/uploads/2019/03/85c2e810-7889-40f5-aa3e-d4a1b6841686-1200x600.jpg"
+                    class="card-img-top" alt="Flight image" />
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <strong> {{ flight.source }} >>> {{ flight.destination }} </strong>
+                    </h2>
+                    <p class="card-text">
+                        <strong>{{ flight.src }} - {{ flight.dest }} - {{ flight.time }} ,
+                            {{ flight.date }}</strong>
+                    </p>
+                    <div class="view-details">
+                        <button style="background-color: #73648a; color: #f9f8f8" class="btn btn-lg btn-block me-2"
+                            data-bs-toggle="modal" data-bs-target="#flightDetails"
+                            (click)="getFlightDetailsById(flight.number)">
+                            View Details
+                        </button>
+
+                        <button style="background-color: #73648a; color: #f9f8f8" class="btn btn-lg btn-block"
+                            data-bs-toggle="modal" data-bs-target="#seatMap"
+                            (click)="getFlightDetailsById(flight.number)">
+                            View Seat Map
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="flightDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="flightDetailsLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content" *ngFor="let flightSelected of flightsSelected">
+                        <div class="modal-header">
+                            <h1 class="modal-title">
+                                {{ flightSelected.src }} - {{ flightSelected.dest }} -
+                                {{ flightSelected.time }} , {{ flightSelected.date }}
+                            </h1>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-borderless table-sm">
+                                <td>
+                                    <tr>
+                                        <strong>Flight No : </strong>
+                                    </tr>
+                                    <tr>
+                                        <strong>Partner : </strong>
+                                    </tr>
+                                    <tr>
+                                        <strong>Route ID : </strong>
+                                    </tr>
+                                </td>
+                                <td>
+                                    <tr>{{ flightSelected.number }}</tr>
+                                    <tr>{{ flightSelected.partner }}</tr>
+                                    <tr>{{ flightSelected.route_Id }}</tr>
+                                </td>
+                            </table>
+                            <hr>
+                            <app-passenger-list [flight_id]="flightSelected.number"></app-passenger-list>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="seatMap" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="seatMapLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content" *ngFor="let flightSelected of flightsSelected">
+                        <div class="modal-header">
+                            <h1 class="modal-title">
+                                {{ flightSelected.src }} - {{ flightSelected.dest }} -
+                                {{ flightSelected.time }} , {{ flightSelected.date }}
+                            </h1>
+                        </div>
+                        <div class="modal-body">
+                            <app-seat-map [flight_id]="flightSelected.number" [check_in]="check_in"></app-seat-map>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

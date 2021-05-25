@@ -1,0 +1,176 @@
+<app-header></app-header>
+
+<div class="container-fluid mt-4">
+  <div class="row row-cols-1 row-cols-md-2 g-1">
+    <div class="col" *ngFor="let flight of flights">
+      <div class="card">
+        <img src="../../../assets/images/flight.jpg" class="card-img-top" alt="Flight image" />
+        <div class="card-body">
+          <h2 class="card-title">
+            <strong> {{ flight.source }} >>> {{ flight.destination }} </strong>
+          </h2>
+          <p class="card-text">
+            <strong>{{ flight.src }} - {{ flight.dest }} - {{ flight.time }} ,
+              {{ flight.date }}</strong>
+          </p>
+          <div class="view-details">
+            <button style="background-color: #73648a; color: #f9f8f8" class="btn btn-lg btn-block"
+              data-bs-toggle="modal" data-bs-target="#flightDetails" (click)="getFlightDetailsById(flight.number)">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="flightDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="flightDetailsLabel" aria-hidden="true">
+        <div class="
+            modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl
+          ">
+          <div class="modal-content" *ngFor="let flightSelected of flightsSelected">
+            <div class="modal-header">
+              <h1 class="modal-title" id="flightDetailsLabel">
+                {{ flightSelected.src }} - {{ flightSelected.dest }} -
+                {{ flightSelected.time }} ,
+                {{ flightSelected.date }}
+              </h1>
+            </div>
+            <div class="modal-body">
+              <table class="table table-borderless table-sm">
+                <td>
+                  <tr>
+                    <strong>Flight No : </strong>
+                  </tr>
+                  <tr>
+                    <strong>Partner : </strong>
+                  </tr>
+                  <tr>
+                    <strong>Route ID : </strong>
+                  </tr>
+                </td>
+                <td>
+                  <tr>
+                    {{
+                    flightSelected.number
+                    }}
+                  </tr>
+                  <tr>
+                    {{
+                    flightSelected.partner
+                    }}
+                  </tr>
+                  <tr>
+                    {{
+                    flightSelected.route_Id
+                    }}
+                  </tr>
+                </td>
+              </table>
+              <hr />
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-passenger-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-passenger" type="button" role="tab" aria-controls="nav-passenger"
+                    aria-selected="true">
+                    Passengers
+                  </button>
+                  <button class="nav-link" id="nav-service-tab" data-bs-toggle="tab" data-bs-target="#nav-service"
+                    type="button" role="tab" aria-controls="nav-service" aria-selected="false"
+                    (click)="getFlightById(flightSelected.id)">
+                    Ancillary Services
+                  </button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-passenger" role="tabpanel"
+                  aria-labelledby="nav-passenger-tab">
+                  <app-passenger-list [flight_id]="flightSelected.number"></app-passenger-list>
+                </div>
+                <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab">
+                  <ol class="list-group">
+                    <li class="
+                        list-group-item
+                        d-flex
+                        justify-content-between
+                        align-items-start
+                      ">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                          Add new services
+                          <button class="btn btn-block btn-sm" style="background-color: #73648a"
+                            (click)="serviceForm()">
+                            <img src="../../../assets/images/svg/add.svg" alt="Edit Service" />
+                          </button>
+                        </div>
+                        <div *ngIf="addService" class="row container-fluid" id="divshow">
+                          <form [formGroup]="service_form" class="row mt-4 mb-2">
+                            <div class="col-md-6">
+                              <label for="service" class="visually-hidden">Add service</label>
+                              <input type="text" class="form-control" id="service" placeholder="Add new Service"
+                                formControlName="service">
+                            </div>
+                            <div class="col-md-5">
+                              <button type="button" class="btn btn-primary"
+                                (click)="saveService(flightSelected)">Add</button>
+                            </div>
+                          </form>
+                        </div>
+                        <div *ngFor="let service of flightSelected.ancillary_services" class="mb-1">
+                          {{ service }}
+                          <button type-button class="btn btn-close btn-sm"
+                            (click)="deleteService(service, flightSelected)" aria-label="Close">
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="
+                        list-group-item
+                        d-flex
+                        justify-content-between
+                        align-items-start
+                      ">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                          Add new shop items
+                          <button class="btn btn-block btn-sm" style="background-color: #73648a" (click)="itemForm()">
+                            <img src="../../../assets/images/svg/add.svg" alt="Add Service" />
+                          </button>
+                        </div>
+                        <div *ngIf="addItem" class="row container-fluid" id="divshow">
+                          <form [formGroup]="item_form" class="row mt-4 mb-2">
+                            <div class="col-md-6">
+                              <label for="shop_item" class="visually-hidden">Add Item</label>
+                              <input type="text" class="form-control" id="shop_item" placeholder="Add new Item"
+                                formControlName="shop_item">
+                            </div>
+                            <div class="col-md-5">
+                              <button type="button" class="btn btn-primary"
+                                (click)="saveItem(flightSelected)">Add</button>
+                            </div>
+                          </form>
+                        </div>
+                        <div *ngFor="let item of flightSelected.shop_items" class="mb-1">
+                          {{ item }}
+                          <button type="button" class="btn btn-close btn-sm" (click)="deleteItem(item, flightSelected)"
+                            aria-label="Close">
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

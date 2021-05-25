@@ -1,0 +1,63 @@
+<div class="container-fluid text-center"
+  style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('../../assets/images/background-image.jpg');">
+  <div class="login">
+    <h1>Welcome to Our Airline Services!</h1>
+    <hr>
+    <div class="form-box col-md-6 offset-md-3 mt-6">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="form">
+        <div class="form-group mb-4">
+          <div class="controls mb-4">
+            <label for="name" class="row justify-content-start mb-2">Name : </label>
+            <input type="text" id="name" placeholder="Enter your name" class="form-control form-control-lg"
+              formControlName="name" />
+          </div>
+          <div class="controls mb-4">
+            <label for="username" class="row justify-content-start mb-2">Username : </label>
+            <input type="text" id="username" placeholder="Username" class="form-control form-control-lg"
+              formControlName="username" />
+            <p class="lblError text-danger" *ngIf="
+                loginForm.get('username').hasError('required') &&
+                loginForm.get('username').touched
+              ">
+              Enter your username
+            </p>
+          </div>
+          <div class="controls mb-4">
+            <label for="password" class="row justify-content-start mb-2">Password : </label>
+            <input type="password" id="password" placeholder="Password" class="form-control form-control-lg"
+              formControlName="password" />
+            <p class="lblError text-danger" *ngIf="
+                loginForm.get('password').hasError('required') &&
+                loginForm.get('password').touched
+              ">
+              Enter your password
+            </p>
+          </div>
+          <div class="controls mb-2">
+            <label for="role" class="row justify-content-start mb-2 me-2">Signing in as : </label>
+            <input id="Admin" type="radio" value="Admin" name="role" formControlName="role"
+              class="me-2 form-check-input">
+            <label for="Admin" class="me-2">Admin</label>
+            <input id="Staff" type="radio" value="Staff" name="role" formControlName="role"
+              class="me-2 form-check-input">
+            <label for="Staff">Staff</label>
+            <p class="lblError text-danger" *ngIf="
+            loginForm.get('role').hasError('required') &&
+            loginForm.get('role').touched
+        ">
+              Select for authorization
+            </p>
+          </div>
+          <div class="row col-xs-12">
+            <button class="btn btn-outline-dark btn-lg" type="submit" [disabled]="loginForm.invalid"
+              style="background-color: #a393bf;">Sign-In</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer  position-absolute bottom-0 end-40">
+    <p style="color: #73648a;">&copy; Our Airline Services 2021. All rights reserved</p>
+  </footer>
+</div>

@@ -1,0 +1,23 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #453750;">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <img class="me-2" src="../../../assets/images/png/flight-icon.png" alt="Logo" />
+      <span class="navigate staff" *ngIf="isStaff">
+        <button [routerLink]="['/homepage/check-in']" routerLinkActive="active" class="btn btn-outline-dark me-2"
+          style="background-color: #9882ac;">Checked-In</button>
+        <button [routerLink]="['/homepage/in-flight']" routerLinkActive="active" class="btn btn-outline-dark me-2"
+          style="background-color: #9882ac;">In-Flight</button>
+      </span>
+      <span *ngIf="isAdmin" class="mt-4 admin" style="color: #f4f2f8; font-size: x-large;"><strong>Airline and Passenger
+          Details for Administration</strong></span>
+    </div>
+    <div class="user-info navbar-nav nav ms-auto ">
+      <h1 class="mt-3">Hello, {{ name }} ! &nbsp;&nbsp;</h1>
+      <span class="mt-2"><a class="btn" (click)="logout()"> <img data-bs-toggle="tooltip" data-bs-placement="bottom"
+            title="Log Out" src="../../../assets/images/svg/back-arrow.svg" alt="Go back"></a></span>
+    </div>
+  </div>
+</nav>
+<hr>
+<hr>
+<hr>

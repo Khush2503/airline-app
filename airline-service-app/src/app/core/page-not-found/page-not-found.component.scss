@@ -1,0 +1,12 @@
+.container-fluid {
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-size: 100% 100%;
+
+  .btn {
+    transform: translate(17.5em, 20em);
+  }
+}

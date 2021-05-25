@@ -1,0 +1,200 @@
+<div class="container-fluid">
+  <h2>
+    <button class="btn btn-sm me-2" style="background-color: #a393bf" data-bs-toggle="tooltip"
+      data-bs-placement="bottom" title="Refresh" (click)="onRefresh()">
+      <img src="../../../../assets/images/svg/refresh.svg" alt="refresh" />
+    </button>
+    <strong>Cockpit-layout</strong>
+  </h2>
+
+  <table class="table table-borderless">
+    <tbody *ngFor="let y of seatNumber1">
+      <td *ngFor="let x of seat; let i=index">
+        <tr>
+          <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" style="background-color: #73648a;"
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
+            {{y}}{{i+1}}
+          </button>
+        </tr>
+      </td>
+    </tbody>
+  </table>
+  <hr>
+  <table class="table table-borderless">
+    <tbody *ngFor="let y of seatNumber2">
+      <td *ngFor="let x of seat; let i=index">
+        <tr>
+          <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" style="background-color: #73648a;"
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
+            {{y}}{{i+1}}
+          </button>
+        </tr>
+      </td>
+    </tbody>
+  </table>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel" *ngIf="check_in">
+  <div class="offcanvas-header">
+    <h1 id="editPassengerLabel" *ngIf="selectedPassenger!=null"><strong> {{ selectedPassenger.firstname }} {{
+        selectedPassenger.lastname }} </strong></h1>
+    <h1 id="editPassengerLabel" *ngIf="selectedPassenger == null"><strong> Seat Not Allocated </strong></h1>
+    <button type="button" class="btn-close btn-lg btn-danger text-reset" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" *ngIf="selectedPassenger!=null">
+    <div class="container">
+      <img class="mb-2" src="../../../assets/images/png/flight-icon.png" alt="Logo" style="width: 100px" />
+      <table class="table table-borderless table-sm">
+        <td>
+          <tr>
+            <strong>Seat Number : </strong>
+          </tr>
+          <tr>
+            <strong>Passport Number : </strong>
+          </tr>
+          <tr>
+            <strong>Date of Birth : </strong>
+          </tr>
+          <tr>
+            <strong>Address : </strong>
+          </tr>
+        </td>
+        <td>
+          <tr>{{ selectedPassenger.seat_number }}</tr>
+          <tr>{{ selectedPassenger.passport_number }}</tr>
+          <tr>{{ selectedPassenger.birth_date }}</tr>
+          <tr>{{ selectedPassenger.address }}</tr>
+        </td>
+      </table>
+      <hr>
+      <h3><strong>Services Required :- </strong></h3>
+      <div class="text-success">
+        <h3 *ngIf="selectedPassenger.infants == 'yes'">Person has infants.</h3>
+        <h3 *ngIf="selectedPassenger.wheel_chair == 'yes'">Person requires wheel chair.</h3>
+        <h3 *ngIf="selectedPassenger.ancillary_services == 'yes'">Person requires Ancillary Services.</h3>
+      </div>
+      <hr>
+      <button class="btn btn-primary me-2" (click)="editCheckIn(selectedPassenger)"
+        *ngIf="selectedPassenger.checked_in == 'yes'">Undo Checked-In</button>
+      <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
+        *ngIf="selectedPassenger.checked_in == 'no'">Check-In</button>
+      <button class="btn btn-block" type="button" style="background-color: #73648a; color: #f9f8f8"
+        data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel"
+  *ngIf="!check_in">
+  <div class="offcanvas-header">
+    <h1 id="editPassengerLabel"><strong>In-Flight status of Passenger</strong></h1>
+    <button type="button" class="btn-close btn-lg btn-danger text-reset" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" *ngIf="selectedPassenger!=null">
+    <div class="container">
+      <img class="mb-2" src="../../../assets/images/png/flight-icon.png" alt="Logo" style="width: 100px" />
+      <table class="table table-borderless table-sm">
+        <td>
+          <tr>
+            <strong>Name : </strong>
+          </tr>
+          <tr>
+            <strong>Seat Number : </strong>
+          </tr>
+          <tr>
+            <strong>Passport Number : </strong>
+          </tr>
+        </td>
+        <td>
+          <tr>{{ selectedPassenger.firstname }} {{ selectedPassenger.lastname }}</tr>
+          <tr>{{ selectedPassenger.seat_number }}</tr>
+          <tr>{{ selectedPassenger.passport_number }}</tr>
+        </td>
+      </table>
+      <hr>
+      <h3><strong>Change meal preferences and Services required :- </strong></h3>
+      <hr>
+      <ol class="list-group">
+        <li class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-start
+                  ">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              Add new services
+              <button class="btn btn-block btn-sm" style="background-color: #73648a" (click)="serviceForm()">
+                <img src="../../../assets/images/svg/add.svg" alt="Edit Service" />
+              </button>
+            </div>
+            <div *ngIf="addService" class="row container-fluid" id="divshow">
+              <form [formGroup]="service_form" class="row mt-4 mb-2">
+                <div class="col-md-6">
+                  <label for="service" class="visually-hidden">Add service</label>
+                  <input type="text" class="form-control" id="service" placeholder="Add new Service"
+                    formControlName="service">
+                </div>
+                <div class="col-md-5">
+                  <button type="button" class="btn btn-primary" (click)="saveService(selectedPassenger)">Add</button>
+                </div>
+              </form>
+            </div>
+            <div *ngFor="let service of selectedPassenger.services" class="mb-1">
+              {{ service }}
+              <button type-button class="btn btn-close btn-sm" (click)="deleteService(service, selectedPassenger)"
+                aria-label="Close">
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-start
+                  ">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              Add new shop items
+              <button class="btn btn-block btn-sm" style="background-color: #73648a" (click)="itemForm()">
+                <img src="../../../assets/images/svg/add.svg" alt="Add Service" />
+              </button>
+            </div>
+            <div *ngIf="addItem" class="row container-fluid" id="divshow">
+              <form [formGroup]="item_form" class="row mt-4 mb-2">
+                <div class="col-md-6">
+                  <label for="shop_item" class="visually-hidden">Add Item</label>
+                  <input type="text" class="form-control" id="shop_item" placeholder="Add new Item"
+                    formControlName="shop_item">
+                </div>
+                <div class="col-md-5">
+                  <button type="button" class="btn btn-primary" (click)="saveItem(selectedPassenger)">Add</button>
+                </div>
+              </form>
+            </div>
+            <div *ngFor="let item of selectedPassenger.items" class="mb-1">
+              {{ item }}
+              <button type="button" class="btn btn-close btn-sm" (click)="deleteItem(item, selectedPassenger)"
+                aria-label="Close">
+              </button>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <hr>
+      <h3 class="text-info"> {{ selectedPassenger.meal }} Meal</h3>
+      <button class="btn btn-primary me-2" (click)="editMealPreference(selectedPassenger)">Change Meal
+        Preference</button>
+      <button class="btn btn-primary me-2" (click)="editCheckIn(selectedPassenger)"
+        *ngIf="selectedPassenger.checked_in == 'yes' && check_in">Undo Checked-In</button>
+      <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
+        *ngIf="selectedPassenger.checked_in == 'no' && check_in">Check-In</button>
+      <button class="btn btn-block" type="button" style="background-color: #73648a; color: #f9f8f8"
+        data-bs-dismiss="offcanvas">Cancel</button>
+    </div>
+  </div>
+</div>

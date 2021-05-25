@@ -1,0 +1,1 @@
+export const FLIGHT_STATE_NAME = 'flight';

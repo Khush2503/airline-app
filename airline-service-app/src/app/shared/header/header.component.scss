@@ -1,0 +1,28 @@
+img{
+    width: 50px;
+}
+.user-info{
+    h1{
+        font-family: Brush Script MT, Brush Script Std, cursive;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+}
+
+.navbar{
+    box-shadow: 4px 4px 15px #0c0910;
+}
+
+.container-fluid{
+    @media (max-width: 360px) { 
+        img{
+            width: 30px;
+        }
+        .admin{
+            strong{
+                font-size: 13px;
+                font-weight: normal;
+            }
+        }
+    }
+}
