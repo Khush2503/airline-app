@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LocalStorageService } from 'ngx-webstorage';
-
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 
 describe('AdminAuthGuardService', () => {
@@ -9,7 +9,8 @@ describe('AdminAuthGuardService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LocalStorageService, Router, Function]
+      imports: [RouterTestingModule],
+      providers: [LocalStorageService]
     });
     service = TestBed.inject(AdminAuthGuardService);
   });
@@ -17,4 +18,13 @@ describe('AdminAuthGuardService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('navigates to admin', () => {
+    it('should navigate', inject([Router], (router: Router) => {
+      spyOn(router, 'navigate').and.stub();
+      expect(service.canActivate()).toBe(false);
+      expect(router.navigate).toHaveBeenCalledWith(['/admin']);
+    }));
+  });
+  
 });

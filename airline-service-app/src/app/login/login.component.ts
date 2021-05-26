@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../core/models/user';
-import { ServiceService } from '../core/services/service.service';
-import { map } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
@@ -19,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: ServiceService,
     private router: Router,
     private localStorageService: LocalStorageService
   ) { }
@@ -39,6 +36,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.value.role === 'Admin')
     {
       if(this.loginForm.value.username == 'Admin25' && this.loginForm.value.password === 'Admin@2503') {
+        this.setStorageData();
         this.router.navigate(['/admin']);
       }
       else {
@@ -47,6 +45,7 @@ export class LoginComponent implements OnInit {
     }
     else{
       if(this.loginForm.value.username == 'Staff03' && this.loginForm.value.password === 'Staff@2503') {
+        this.setStorageData();
         this.router.navigate(['/homepage']);
       }
       else {
@@ -57,11 +56,7 @@ export class LoginComponent implements OnInit {
 
   setStorageData()
   {
-    this.user.name = this.loginForm.value.name;
-    this.user.username = this.loginForm.value.username;
-    this.user.role = this.loginForm.value.role;
-
-    this.localStorageService.store('user', this.user);
+    this.localStorageService.store('user', this.loginForm.value);
   }
 
 }

@@ -22,4 +22,5 @@ describe('InFlightComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

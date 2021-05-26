@@ -27,9 +27,8 @@ export class ServiceService {
       .pipe(map((x) => x.filter((u) => u.number === number)));
   }
 
-  getUsers(role: string): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:3000/users')
-    .pipe(map((x) => x.filter((u) => u.role === role)));
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:3000/users');
   }
 
   getPassengers(flight_id: string): Observable<Passenger[]> {

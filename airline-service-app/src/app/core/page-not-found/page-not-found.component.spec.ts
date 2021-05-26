@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 describe('PageNotFoundComponent', () => {
@@ -10,7 +10,7 @@ describe('PageNotFoundComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PageNotFoundComponent ],
-      providers: [Router, Function]
+      imports: [RouterTestingModule],
     })
     .compileComponents();
   });
@@ -24,4 +24,14 @@ describe('PageNotFoundComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('navigate to login page', () => {
+    it('navigate Example', () => {
+        const routerstub: Router = TestBed.get(Router);
+        spyOn(routerstub, 'navigate');
+        component.onClick();
+        expect(routerstub.navigate).toHaveBeenCalledWith(['/login']);
+    });
+  });
+
 });

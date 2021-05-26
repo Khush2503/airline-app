@@ -70,9 +70,9 @@
       <hr>
       <h3><strong>Services Required :- </strong></h3>
       <div class="text-success">
-        <h3 *ngIf="selectedPassenger.infants == 'yes'">Person has infants.</h3>
-        <h3 *ngIf="selectedPassenger.wheel_chair == 'yes'">Person requires wheel chair.</h3>
-        <h3 *ngIf="selectedPassenger.ancillary_services == 'yes'">Person requires Ancillary Services.</h3>
+        <h4 *ngIf="selectedPassenger.infants == 'yes'">Person has infants.</h4>
+        <h4 *ngIf="selectedPassenger.wheel_chair == 'yes'">Person requires wheel chair.</h4>
+        <h4 *ngIf="selectedPassenger.ancillary_services == 'yes'">Person requires Ancillary Services.</h4>
       </div>
       <hr>
       <button class="btn btn-primary me-2" (click)="editCheckIn(selectedPassenger)"
@@ -115,7 +115,7 @@
         </td>
       </table>
       <hr>
-      <h3><strong>Change meal preferences and Services required :- </strong></h3>
+      <h4><strong>Change meal preferences and Services required :- </strong></h4>
       <hr>
       <ol class="list-group">
         <li class="

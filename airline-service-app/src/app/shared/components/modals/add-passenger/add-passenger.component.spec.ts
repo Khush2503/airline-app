@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
-import { ActionsSubject, ReducerManager, ReducerManagerDispatcher, StateObservable, Store } from '@ngrx/store';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Store, StoreModule } from '@ngrx/store';
+import { By } from 'protractor';
+import { PassengerReducer } from 'src/app/core/store/reducers/passenger.reducer';
+import { PASSENGER_STATE_NAME } from 'src/app/core/store/selectors/passenger.selector';
 
 import { AddPassengerComponent } from './add-passenger.component';
 
@@ -11,7 +14,11 @@ describe('AddPassengerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AddPassengerComponent ],
-      providers: [FormBuilder, Store, StateObservable, ActionsSubject, ReducerManager, ReducerManagerDispatcher]
+      imports: [ReactiveFormsModule, 
+        StoreModule.forFeature(PASSENGER_STATE_NAME, PassengerReducer),
+        StoreModule.forRoot({}), 
+      ],
+      providers: []
     })
     .compileComponents();
   });
@@ -25,4 +32,28 @@ describe('AddPassengerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form invalid when empty', () => {
+    expect(component.createForm.valid).toBeFalsy();
+  });
+
+  it('CHECK INITIAL FORM VALUES FOR LOGIN FORM GROUP', () => {
+    const createFormGroup = component.createForm;
+    const loginFormValues = {
+      firstname: null,
+      lastname: null,
+      passport_number: null,
+      birth_date: null,
+      address: null,
+      flight_id: null,
+      seat_number: null,
+      checked_in: null,
+      infants: null,
+      wheel_chair: null,
+      ancillary_services: null
+    }
+    expect(createFormGroup.value).toEqual(loginFormValues);
+  });
+
+
 });

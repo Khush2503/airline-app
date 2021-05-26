@@ -11,6 +11,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: []
     }).compileComponents();
   });
 
@@ -26,10 +27,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('airline-service-app');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('airline-service-app app is running!');
-  });
 });
