@@ -16,12 +16,12 @@ export class AdminAirlineListComponent implements OnInit {
   addItem = false;
   flightDetails: Flight;
 
-  service_form = this.fb.group({
+  formService = this.fb.group({
     service: [null, Validators.required]
   });
 
-  item_form = this.fb.group({
-    shop_item: [null, Validators.required]
+  formItem = this.fb.group({
+    item: [null, Validators.required]
   });
 
   constructor(private service: ServiceService, private fb: FormBuilder) { }
@@ -52,7 +52,7 @@ export class AdminAirlineListComponent implements OnInit {
 
   saveService(flight: Flight) {
     this.addService = !this.addService;
-    flight.ancillary_services.push(this.service_form.value.service);
+    flight.ancillary_services.push(this.formService.value.service);
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
     });
     this.getFlightById(flight.id);
@@ -60,7 +60,7 @@ export class AdminAirlineListComponent implements OnInit {
 
   saveItem(flight: Flight) {
     this.addItem = !this.addItem;
-    flight.shop_items.push(this.item_form.value.shop_item);
+    flight.shop_items.push(this.formItem.value.item);
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
     });
     this.getFlightById(flight.id);
@@ -68,7 +68,7 @@ export class AdminAirlineListComponent implements OnInit {
 
   deleteService(service: string, flight: Flight) {
     flight.ancillary_services.forEach((value, index) => {
-      if (value == service) {
+      if (value === service) {
         flight.ancillary_services.splice(index, 1);
       }
     });
@@ -79,7 +79,7 @@ export class AdminAirlineListComponent implements OnInit {
 
   deleteItem(item: string, flight: Flight) {
     flight.shop_items.forEach((value, index) => {
-      if (value == item) {
+      if (value === item) {
         flight.shop_items.splice(index, 1);
       }
     });

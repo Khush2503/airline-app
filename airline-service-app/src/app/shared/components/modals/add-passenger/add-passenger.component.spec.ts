@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store, StoreModule } from '@ngrx/store';
-import { By } from 'protractor';
-import { PassengerReducer } from 'src/app/core/store/reducers/passenger.reducer';
-import { PASSENGER_STATE_NAME } from 'src/app/core/store/selectors/passenger.selector';
 
 import { AddPassengerComponent } from './add-passenger.component';
 
@@ -15,8 +12,11 @@ describe('AddPassengerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AddPassengerComponent ],
       imports: [ReactiveFormsModule,
+<<<<<<< HEAD
         StoreModule.forFeature(PASSENGER_STATE_NAME, PassengerReducer),
         StoreModule.forRoot({}),
+=======
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
       ],
       providers: []
     })

@@ -14,7 +14,6 @@ export class InFlightAirlineListComponent implements OnInit {
   flightsSelected: Flight[];
   flightDetails: Flight;
   check_in = false;
-  passengers: Passenger[];
 
   constructor(private service: ServiceService) { }
 
@@ -31,9 +30,6 @@ export class InFlightAirlineListComponent implements OnInit {
   getFlightDetailsById(number: string) {
     this.service.getFlightDetailsById(number).subscribe((data: Flight[]) => {
       this.flightsSelected = data;
-    });
-    this.service.getPassengers(number).subscribe((data: Passenger[]) => {
-      this.passengers = data;
     });
   }
 

@@ -10,7 +10,11 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class HeaderComponent implements OnInit {
 
+<<<<<<< HEAD
   name: String;
+=======
+  name: string;
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   isAdmin = false;
   isStaff = false;
   constructor(

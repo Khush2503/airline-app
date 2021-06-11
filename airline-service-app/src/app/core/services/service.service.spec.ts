@@ -12,8 +12,8 @@ describe('ServiceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        providers: [LocalStorageService]
+      imports: [HttpClientTestingModule],
+      providers: [LocalStorageService]
     });
     service = TestBed.inject(ServiceService);
     httpMock = TestBed.get(HttpTestingController);
@@ -124,34 +124,33 @@ describe('ServiceService', () => {
     })));
 
   it('should fetch users as an observable', async(inject([HttpTestingController, ServiceService],
-      (httpClient: HttpTestingController, service: ServiceService) => {
-        const users = [
-          {
-            id: 1,
-            role: 'Admin',
-            name: '',
-            username: 'Admin25',
-            password: 'Admin@2503'
-          },
-          {
-            id: 2,
-            role: 'Staff',
-            name: '',
-            username: 'Staff03',
-            password: 'Staff@2503'
-          }
-        ];
-
-        service.getUsers()
-          .subscribe((users: User[]) => {
-            expect(users.length).toBe(2);
-          });
+    (httpClient: HttpTestingController, service: ServiceService) => {
+      const users = [
+        {
+          id: 1,
+          role: 'Admin',
+          name: '',
+          username: 'Admin25',
+          password: 'Admin@2503'
+        },
+        {
+          id: 2,
+          role: 'Staff',
+          name: '',
+          username: 'Staff03',
+          password: 'Staff@2503'
+        }
+      ];
+      service.getUsers()
+        .subscribe((users: User[]) => {
+          expect(users.length).toBe(2);
+        });
 
         const req = httpMock.expectOne('http://localhost:3000/users');
         expect(req.request.method).toBe('GET');
 
-        req.flush(users);
-        httpMock.verify();
-      })));
+      req.flush(users);
+      httpMock.verify();
+    })));
 
 });

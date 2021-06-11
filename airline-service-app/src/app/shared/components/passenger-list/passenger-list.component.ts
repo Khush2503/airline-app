@@ -11,15 +11,21 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class PassengerListComponent implements OnInit {
 
-  @Input('flight_id') flight_id: string;
+  @Input() flight_id: string;
   passengers: Passenger[] = [];
   passenger: Passenger;
   id_passenger: number;
   isAdmin: boolean;
   isStaff: boolean;
 
+<<<<<<< HEAD
   constructor(private service: ServiceService,
               private localStorageService: LocalStorageService) { }
+=======
+  constructor(
+    private service: ServiceService,
+    private localStorageService: LocalStorageService) { }
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
 
   ngOnInit(): void {
     this.getPassengers();

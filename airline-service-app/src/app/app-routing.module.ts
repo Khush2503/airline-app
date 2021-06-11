@@ -6,11 +6,29 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'homepage', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule), canActivate: [StaffAuthGuardService] },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [AdminAuthGuardService] },
-  { path: 'errorpage', component: PageNotFoundComponent }
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'homepage',
+    loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule),
+    canActivate: [StaffAuthGuardService]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AdminAuthGuardService]
+  },
+  {
+    path: 'errorpage',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

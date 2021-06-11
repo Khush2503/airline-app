@@ -10,9 +10,15 @@ import { ServiceService } from 'src/app/core/services/service.service';
 })
 export class SeatMapComponent implements OnInit {
 
+<<<<<<< HEAD
   @Input('flight_id') flight_id: string;
   @Input('check_in') check_in: boolean;
   @Input('passengers') passengers: Passenger[] = [];
+=======
+  @Input() flight_id: string;
+  @Input() check_in: boolean;
+  passengers: Passenger[] = null;
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   selectedPassenger: Passenger = new Passenger();
 
   seatNumber1 = ['A', 'B', 'C'];
@@ -23,16 +29,32 @@ export class SeatMapComponent implements OnInit {
   addItem = false;
 
   service_form = this.fb.group({
+<<<<<<< HEAD
     service: [null, Validators.required]
   });
 
   item_form = this.fb.group({
     shop_item: [null, Validators.required]
+=======
+    'service': [null, Validators.required]
+  });
+
+  item_form = this.fb.group({
+    'shop_item': [null, Validators.required]
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   });
 
   constructor(private service: ServiceService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD
+=======
+    this.getPassengers();
+  }
+
+  getPassengers() {
+    this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => { this.passengers = data; });
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   }
 
   onRefresh() {
@@ -58,6 +80,10 @@ export class SeatMapComponent implements OnInit {
     }
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+<<<<<<< HEAD
+=======
+    this.getPassengers();
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   }
 
   serviceForm() {
@@ -84,7 +110,11 @@ export class SeatMapComponent implements OnInit {
 
   deleteService(service: string, passenger: Passenger) {
     passenger.services.forEach((value, index) => {
+<<<<<<< HEAD
       if (value == service) {
+=======
+      if (value === service)
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
         passenger.services.splice(index, 1);
       }
     });
@@ -94,7 +124,11 @@ export class SeatMapComponent implements OnInit {
 
   deleteItem(item: string, passenger: Passenger) {
     passenger.items.forEach((value, index) => {
+<<<<<<< HEAD
       if (value == item) {
+=======
+      if (value === item)
+>>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
         passenger.items.splice(index, 1);
       }
     });

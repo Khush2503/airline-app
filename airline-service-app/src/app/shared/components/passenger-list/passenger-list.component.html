@@ -83,8 +83,8 @@
   </table>
 </div>
 
-<app-add-passenger class="offcanvas offcanvas-end" tabindex="-1" id="addPassenger" aria-labelledby="addPassengerLabel">
-</app-add-passenger>
+<app-add-passenger class="offcanvas offcanvas-end" tabindex="-1" id="addPassenger" 
+aria-labelledby="addPassengerLabel" [flight_id]="flight_id"></app-add-passenger>
 <app-edit-passenger class="offcanvas offcanvas-end" tabindex="-1" id="editPassenger"
   aria-labelledby="editPassengerLabel" [id_passenger]="id_passenger"></app-edit-passenger>
 <app-passenger-details class="offcanvas offcanvas-end" tabindex="-1" id="passengerDetails"
