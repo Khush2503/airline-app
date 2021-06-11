@@ -1,0 +1,11 @@
+@import "../../../assets/scss/variables/colors";
+
+.container-fluid{
+    background-color: map-get($colors, "background", "purple-dark");
+    box-shadow: 4px 4px 15px map-get($colors, "background", "black-light");
+}
+.footer{
+    h3{
+        color: map-get($colors, "text", "purple-light");
+    }
+}

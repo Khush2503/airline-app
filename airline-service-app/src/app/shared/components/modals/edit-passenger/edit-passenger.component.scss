@@ -1,0 +1,10 @@
+@import "../../../../../assets/scss/variables/colors";
+
+.refresh-button{
+    background-color: map-get($colors, "background", "grey-dark"); 
+}
+
+.cancel-button{
+    background-color: map-get($colors, "background", "grey-dark"); 
+    color: map-get($colors, "text", "off-white");
+}

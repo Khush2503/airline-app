@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { Passenger } from "../../models/passenger";
+import { createAction, props } from '@ngrx/store';
+import { Passenger } from '../../models/passenger';
 
 export const PASSENGER = '[passenger page] passenger';
 export const PASSENGER_SUCCESS = '[passenger page] passenger success';

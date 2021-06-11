@@ -17,7 +17,7 @@ export class ServiceService {
   getFlightDetails(): Observable<Flight[]> {
     return this.http.get<Flight[]>('http://localhost:3000/flights')
       .pipe(
-        tap(flights => { return flights }),
+        tap(flights => flights),
         catchError(this.handleError('getFlightDetails', []))
       );
   }
@@ -77,7 +77,7 @@ export class ServiceService {
   }
 
 
-  
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

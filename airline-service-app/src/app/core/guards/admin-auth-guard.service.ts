@@ -13,10 +13,10 @@ export class AdminAuthGuardService implements CanActivate {
   ) { }
 
   canActivate(): boolean {
-    if (this.localStorageService.retrieve('user') !== null) {  //this.localStorageService.retrieve('user').role !== 'admin'
+    if (this.localStorageService.retrieve('user') !== null) {  // this.localStorageService.retrieve('user').role !== 'admin'
       return true;
     }
-    alert("Unauthorised access");
+    alert('Unauthorised access');
     this.router.navigate(['/errorpage']);
     return false;
   }

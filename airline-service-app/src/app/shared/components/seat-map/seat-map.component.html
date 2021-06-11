@@ -1,37 +1,107 @@
 <div class="container-fluid">
   <h2>
-    <button class="btn btn-sm me-2" style="background-color: #a393bf" data-bs-toggle="tooltip"
+    <button class="refresh btn btn-sm me-2" data-bs-toggle="tooltip"
       data-bs-placement="bottom" title="Refresh" (click)="onRefresh()">
       <img src="../../../../assets/images/svg/refresh.svg" alt="refresh" />
     </button>
     <strong>Cockpit-layout</strong>
   </h2>
 
-  <table class="table table-borderless">
-    <tbody *ngFor="let y of seatNumber1">
-      <td *ngFor="let x of seat; let i=index">
-        <tr>
-          <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" style="background-color: #73648a;"
-            type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
-            {{y}}{{i+1}}
-          </button>
-        </tr>
-      </td>
-    </tbody>
-  </table>
-  <hr>
-  <table class="table table-borderless">
-    <tbody *ngFor="let y of seatNumber2">
-      <td *ngFor="let x of seat; let i=index">
-        <tr>
-          <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" style="background-color: #73648a;"
-            type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
-            {{y}}{{i+1}}
-          </button>
-        </tr>
-      </td>
-    </tbody>
-  </table>
+  <div *ngIf="check_in">
+    <table class="table table-borderless">
+      <tbody *ngFor="let y of seatNumber1">
+        <td *ngFor="let x of seat; let i=index">
+          <tr>
+            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2"
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
+              [ngStyle]="{
+                backgroundImage: 
+                isSeatAllocated(y,i+1)
+                ? (isCheckedIn(y,i+1)
+                  ? (hasInfants(y,i+1) 
+                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-all.JPG)' : 'url(../../../../assets/images/ci-infant.JPG)') 
+                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-wc.JPG)' : 'url(../../../../assets/images/check-in.JPG)')) 
+                  : (hasInfants(y,i+1) 
+                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-all.JPG)' : 'url(../../../../assets/images/nci-infant.JPG)') 
+                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-wc.JPG)' : 'url(../../../../assets/images/not-check-in.JPG)')))
+                : ('url(../../../../assets/images/no-seat.JPG)')
+              }"
+              >
+              {{y}}{{i+1}}
+            </button>
+          </tr>
+        </td>
+      </tbody>
+    </table>
+    <hr>
+    <table class="table table-borderless">
+      <tbody *ngFor="let y of seatNumber2">
+        <td *ngFor="let x of seat; let i=index">
+          <tr>
+            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" 
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
+              [ngStyle]="{
+                backgroundImage: 
+                isSeatAllocated(y,i+1)
+                ? (isCheckedIn(y,i+1)
+                  ? (hasInfants(y,i+1) 
+                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-all.JPG)' : 'url(../../../../assets/images/ci-infant.JPG)') 
+                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-wc.JPG)' : 'url(../../../../assets/images/check-in.JPG)')) 
+                  : (hasInfants(y,i+1) 
+                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-all.JPG)' : 'url(../../../../assets/images/nci-infant.JPG)') 
+                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-wc.JPG)' : 'url(../../../../assets/images/not-check-in.JPG)')))
+                : ('url(../../../../assets/images/no-seat.JPG)')
+              }"
+              >
+              {{y}}{{i+1}}
+            </button>
+          </tr>
+        </td>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!check_in">
+    <table class="table table-borderless">
+      <tbody *ngFor="let y of seatNumber1">
+        <td *ngFor="let x of seat; let i=index">
+          <tr>
+            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2"
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
+              [ngStyle]="{
+                backgroundImage: 
+                check_in && isCheckedIn(y,i+1)
+                ? 'url(../../../../assets/images/check-in.JPG)'
+                : 'url(../../../../assets/images/no-seat.JPG)'
+              }"
+              >
+              {{y}}{{i+1}}
+            </button>
+          </tr>
+        </td>
+      </tbody>
+    </table>
+    <hr>
+    <table class="table table-borderless">
+      <tbody *ngFor="let y of seatNumber2">
+        <td *ngFor="let x of seat; let i=index">
+          <tr>
+            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" 
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
+              [ngStyle]="{
+                backgroundImage: 
+                check_in && isCheckedIn(y,i+1)
+                ? 'url(../../../../assets/images/check-in.JPG)'
+                : 'url(../../../../assets/images/no-seat.JPG)'
+              }"
+              >
+              {{y}}{{i+1}}
+            </button>
+          </tr>
+        </td>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel" *ngIf="check_in">
@@ -79,7 +149,7 @@
         *ngIf="selectedPassenger.checked_in == 'yes'">Undo Checked-In</button>
       <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
         *ngIf="selectedPassenger.checked_in == 'no'">Check-In</button>
-      <button class="btn btn-block" type="button" style="background-color: #73648a; color: #f9f8f8"
+      <button class="cancel-button btn btn-block" type="button"
         data-bs-dismiss="offcanvas">Cancel</button>
     </div>
   </div>
@@ -127,7 +197,7 @@
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               Add new services
-              <button class="btn btn-block btn-sm" style="background-color: #73648a" (click)="serviceForm()">
+              <button class="form-button btn btn-block btn-sm" (click)="serviceForm()">
                 <img src="../../../assets/images/svg/add.svg" alt="Edit Service" />
               </button>
             </div>
@@ -160,7 +230,7 @@
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               Add new shop items
-              <button class="btn btn-block btn-sm" style="background-color: #73648a" (click)="itemForm()">
+              <button class="form-button btn btn-block btn-sm" (click)="itemForm()">
                 <img src="../../../assets/images/svg/add.svg" alt="Add Service" />
               </button>
             </div>
@@ -193,7 +263,7 @@
         *ngIf="selectedPassenger.checked_in == 'yes' && check_in">Undo Checked-In</button>
       <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
         *ngIf="selectedPassenger.checked_in == 'no' && check_in">Check-In</button>
-      <button class="btn btn-block" type="button" style="background-color: #73648a; color: #f9f8f8"
+      <button class="cancel-button btn btn-block" type="button"
         data-bs-dismiss="offcanvas">Cancel</button>
     </div>
   </div>

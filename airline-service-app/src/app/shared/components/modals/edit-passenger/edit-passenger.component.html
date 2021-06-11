@@ -5,7 +5,7 @@
 </div>
 <div class="offcanvas-body">
   <div class="form-box col-xs-12 mt-2">
-    <button class="btn btn-block mb-4" style="background-color: #73648a;" (click)="getPassengers()">Load
+    <button class="refresh-button btn btn-block mb-4" (click)="getPassengers()">Load
       Details</button>
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate class="form">
       <div class="form-group mb-4">
@@ -133,7 +133,7 @@
         </div>
 
         <div class="controls mb-4">
-          <button class="btn btn-block me-2" type="button" style="background-color: #7e7f9a; color: #f9f8f8"
+          <button class="cancel-button btn btn-block me-2" type="button"
             data-bs-dismiss="offcanvas">Cancel</button>
           <button class="btn btn-success btn-block" type="submit" [disabled]="!editForm.valid">Save</button>
         </div>

@@ -43,13 +43,13 @@ export class EditPassengerComponent implements OnInit {
     this.passenger = this.editForm.value;
     this.service.editPassenger(this.id_passenger, this.passenger).subscribe((data: Passenger) => {
       this.passenger = data;
-    })
+    });
     this.editForm.reset();
   }
 
   getPassengers() {
     this.service.getPassengerById(this.id_passenger).subscribe((data: Passenger) => {
-      console.log("Passenger with ID : " + this.id_passenger + " : " + data);
+      console.log('Passenger with ID : ' + this.id_passenger + ' : ' + data);
       this.passenger = data;
 
       this.editForm.setValue({
@@ -65,7 +65,7 @@ export class EditPassengerComponent implements OnInit {
         wheel_chair: this.passenger.wheel_chair,
         ancillary_services: this.passenger.ancillary_services
       });
-    })
+    });
   }
 
 }

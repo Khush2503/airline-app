@@ -35,14 +35,14 @@ export class AddPassengerComponent implements OnInit {
       infants: [null, [Validators.required]],
       wheel_chair: [null, [Validators.required]],
       ancillary_services: [null, [Validators.required]],
-    })
+    });
   }
 
   onSubmit() {
     this.passenger = this.createForm.value;
     this.passenger.meal = 'normal';
-    this.passenger.services = ["wifi"];
-    this.passenger.items = ["books"];
+    this.passenger.services = ['wifi'];
+    this.passenger.items = ['books'];
     this.createForm.reset();
     this.store.dispatch(passenger(this.passenger));
   }

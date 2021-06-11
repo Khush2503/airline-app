@@ -1,0 +1,16 @@
+@import "../../../assets/scss/variables/colors";
+
+.card-body{
+    .view-details{
+        button{
+            background-color: map-get($colors, "background", "grey-dark"); 
+            color: map-get($colors, "text", "off-white");
+        }
+    }
+}
+
+.list-group{
+    .form-button{
+        background-color: map-get($colors, "background", "grey-dark"); 
+    }
+}

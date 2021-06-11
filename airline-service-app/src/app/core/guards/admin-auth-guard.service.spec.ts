@@ -26,5 +26,5 @@ describe('AdminAuthGuardService', () => {
       expect(router.navigate).toHaveBeenCalledWith(['/admin']);
     }));
   });
-  
+
 });

@@ -1,5 +1,5 @@
-import { createReducer, on } from "@ngrx/store";
-import { initialState } from "../states/flight.state";
+import { createReducer, on } from '@ngrx/store';
+import { initialState } from '../states/flight.state';
 
 const _flightReducer = createReducer(initialState);
 

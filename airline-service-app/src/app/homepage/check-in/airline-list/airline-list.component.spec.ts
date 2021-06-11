@@ -35,7 +35,7 @@ describe('AirlineListComponent', () => {
     const fixture = TestBed.createComponent(AirlineListComponent);
     const component = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    let spy_getPosts = spyOn(service,"getFlightDetails").and.callFake(() => {
+    const spy_getPosts = spyOn(service, 'getFlightDetails').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
     component.getFlightDetails();
@@ -47,12 +47,12 @@ describe('AirlineListComponent', () => {
     const fixture = TestBed.createComponent(AirlineListComponent);
     const component = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    let spy_getPosts = spyOn(service,"getFlightDetailsById").and.callFake(() => {
+    const spy_getPosts = spyOn(service, 'getFlightDetailsById').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
     component.getFlightDetailsById();
     tick(100);
     expect(component.flightsSelected).toEqual([]);
   }));
-  
+
 });

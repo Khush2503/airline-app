@@ -1,0 +1,6 @@
+@import "../../../../assets/scss/variables/colors";
+
+.view-button{
+    background-color: map-get($colors, "background", "grey-dark"); 
+    color: map-get($colors, "text", "off-white");
+}

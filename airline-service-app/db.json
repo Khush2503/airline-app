@@ -109,17 +109,11 @@
       "address": "Jamshedpur",
       "flight_id": "1A",
       "seat_number": "A1",
-      "checked_in": "yes",
+      "checked_in": "no",
       "infants": "yes",
       "wheel_chair": "yes",
       "ancillary_services": "yes",
-      "id": "1",
-      "meal": "Special",
-      "services": [
-        "drinks",
-        "books"
-      ],
-      "items": []
+      "id": "1"
     },
     {
       "id": "2",

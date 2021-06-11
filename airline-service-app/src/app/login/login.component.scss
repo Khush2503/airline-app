@@ -1,3 +1,5 @@
+@import "../../assets/scss/variables/colors";
+
 .container-fluid{
     background-repeat: no-repeat;
     background-position:center;
@@ -13,15 +15,19 @@
         h1{
             font-family: Brush Script MT, Brush Script Std, cursive;
             font-size: 4rem;
-            color: #a393bf;
+            color: map-get($colors, "text", "violet-pale");
         }
 
         hr{
-            color: #73648a;
+            color: map-get($colors, "text", "grey-dark");
         }
         
         label{
-            color: #9882ac;
+            color: map-get($colors, "text", "violet-light");
+        }
+
+        .submit{
+            background-color: map-get($colors, "text", "violet-pale");;
         }
 
         @media (max-width: 360px) { 
@@ -32,6 +38,10 @@
             }
         }
         
+    }
+
+    .footer{
+        color: map-get($colors, "text", "grey-dark");;
     }
     
 }

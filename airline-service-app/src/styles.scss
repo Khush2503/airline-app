@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/variables/colors";
 
 @import "~bootstrap/dist/css/bootstrap.css";
 body {
@@ -14,23 +15,23 @@ body {
   padding: 0px;
 
   .card {
-    background-color: #9882ac;
-    box-shadow: 5px 10px 18px #0c0910;
+    background-color: map-get($colors, "background", "purple-light");
+    box-shadow: 5px 10px 18px map-get($colors, "background", "black-light");
     margin: 20px 40px;
 
     .card-body {
       .card-title {
-        background-color: #453750;
-        color: #b3a5ca;
+        background-color: map-get($colors, "background", "purple-dark");
+        color: map-get($colors, "background", "purple-pale");
         padding: 15px;
-        box-shadow: 4px 4px 10px #73648a;
+        box-shadow: 4px 4px 10px map-get($colors, "background", "grey-dark");
       }
 
       .view-details {
         :hover {
           transform: translateY(-0.25em);
           transition-duration: 0.3s;
-          box-shadow: 4px 4px 10px #292030;
+          box-shadow: 4px 4px 10px map-get($colors, "background", "violet");
         }
       }
     }
@@ -38,27 +39,27 @@ body {
 
   .modal-dialog {
     .modal-header {
-      background-color: #73648a;
-      color: #f9f8f8;
+      background-color: map-get($colors, "background", "grey-dark");
+      color: map-get($colors, "background", "off-white");
       align-items: center;
       justify-content: center;
     }
 
     .modal-body {
-      background-color: #f9f8f8;
+      background-color: map-get($colors, "background", "off-white");
     }
 
     .modal-footer {
-      background-color: #73648a;
+      background-color: map-get($colors, "background", "grey-dark");
     }
   }
   .offcanvas-header {
-    background-color: #73648a;
-    color: #f9f8f8;
+    background-color: map-get($colors, "background", "grey-dark");
+    color: map-get($colors, "background", "off-white");
   }
 
   .offcanvas-body {
-    background-color: #f9f8f8;
+    background-color: map-get($colors, "background", "off-white");
   }
 }
 html,

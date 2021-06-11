@@ -1,0 +1,16 @@
+@import "../../../../assets/scss/variables/colors";
+
+.container-fluid{
+    .refresh{
+        background-color: map-get($colors, "background", "violet-pale"); 
+    }
+}
+
+.cancel-button{
+    background-color: map-get($colors, "background", "grey-dark"); 
+    color: map-get($colors, "text", "off-white");
+}
+
+.form-button{
+    background-color: map-get($colors, "background", "grey-dark"); 
+}

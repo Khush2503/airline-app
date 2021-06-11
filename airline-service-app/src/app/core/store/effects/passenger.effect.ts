@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap, map } from "rxjs/operators";
-import { ServiceService } from "../../services/service.service";
-import { editPassenger, editPassengerSuccess, passenger, passengerSuccess } from "../actions/passenger.action";
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { exhaustMap, map } from 'rxjs/operators';
+import { ServiceService } from '../../services/service.service';
+import { editPassenger, editPassengerSuccess, passenger, passengerSuccess } from '../actions/passenger.action';
 
 @Injectable()
 export class PassengerEffects {

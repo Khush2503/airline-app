@@ -11,15 +11,15 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class HeaderComponent implements OnInit {
 
   name: String;
-  isAdmin: boolean = false;
-  isStaff: boolean = false;
+  isAdmin = false;
+  isStaff = false;
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
     location: PlatformLocation
   ) {
     location.onPopState(() => {
-      alert("To continue with the application please LOG IN again!");
+      alert('To continue with the application please LOG IN again!');
       this.localStorageService.clear('user');
       this.isAdmin = false;
       this.isStaff = false;

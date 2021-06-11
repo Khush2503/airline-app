@@ -1,0 +1,5 @@
+@import "../../../../assets/scss/variables/colors";
+
+.filter, .add, .refresh, .edit{
+    background-color: map-get($colors, "background", "grey-dark"); 
+}

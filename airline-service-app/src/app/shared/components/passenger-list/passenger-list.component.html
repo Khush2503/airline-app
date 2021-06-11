@@ -3,7 +3,7 @@
     <div class="row mt-4 mb-2">
       <div class="col-md-3">
         <div class="btn-group dropend">
-          <button type="button" class="btn btn-outline-dark dropdown-toggle" style="background-color: #73648a"
+          <button type="button" class="filter btn btn-outline-dark dropdown-toggle"
             data-bs-toggle="dropdown" aria-expanded="false">
             Select filter
           </button>
@@ -19,11 +19,11 @@
         </div>
       </div>
       <div class="col-md-3 ms-auto">
-        <button class="btn btn-light me-2" style="background-color: #73648a" data-bs-toggle="offcanvas"
+        <button class="add btn btn-light me-2" data-bs-toggle="offcanvas"
           data-bs-target="#addPassenger" aria-controls="addPassenger"> Add Passenger
           <img src="../../../../assets/images/svg/edit.svg" alt="edit passenger" />
         </button>
-        <button class="btn btn-block" style="background-color: #73648a" (click)="onRefresh()">
+        <button class="refresh btn btn-block" (click)="onRefresh()">
           <img src="../../../../assets/images/svg/refresh.svg" alt="refresh" />
         </button>
       </div>
@@ -32,7 +32,7 @@
   <div class="container" *ngIf="isStaff">
     <div class="col-md-3 mt-4 mb-2">
       <div class="btn-group dropend">
-        <button type="button" class="btn btn-block dropdown-toggle" style="background-color: #73648a"
+        <button type="button" class="filter btn btn-block dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
           Select filter
         </button>
@@ -68,11 +68,11 @@
           <p *ngFor="let service of passenger.services"> {{ service }} </p>
         </td>
         <td>
-          <button (click)="getPassenger(passenger)" class="btn btn-block btn-sm" style="background-color: #73648a"
+          <button (click)="getPassenger(passenger)" class="edit btn btn-block btn-sm"
             data-bs-toggle="offcanvas" data-bs-target="#editPassenger" aria-controls="editPassenger" *ngIf="isAdmin">
             <img src="../../../../assets/images/svg/edit.svg" alt="edit" />
           </button>
-          <button (click)="getPassenger(passenger)" class="btn btn-block btn-sm" style="background-color: #73648a"
+          <button (click)="getPassenger(passenger)" class="edit btn btn-block btn-sm"
             data-bs-toggle="offcanvas" data-bs-target="#passengerDetails" aria-controls="passengerDetails"
             *ngIf="!isAdmin">
             <img src="../../../../assets/images/svg/edit.svg" alt="edit" />

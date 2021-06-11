@@ -14,9 +14,9 @@ describe('AddPassengerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AddPassengerComponent ],
-      imports: [ReactiveFormsModule, 
+      imports: [ReactiveFormsModule,
         StoreModule.forFeature(PASSENGER_STATE_NAME, PassengerReducer),
-        StoreModule.forRoot({}), 
+        StoreModule.forRoot({}),
       ],
       providers: []
     })
@@ -51,7 +51,7 @@ describe('AddPassengerComponent', () => {
       infants: null,
       wheel_chair: null,
       ancillary_services: null
-    }
+    };
     expect(createFormGroup.value).toEqual(loginFormValues);
   });
 

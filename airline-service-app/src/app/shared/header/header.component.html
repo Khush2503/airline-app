@@ -4,11 +4,11 @@
       <img class="me-2" src="../../../assets/images/png/flight-icon.png" alt="Logo" />
       <span class="navigate staff" *ngIf="isStaff">
         <button [routerLink]="['/homepage/check-in']" routerLinkActive="active" class="btn btn-outline-dark me-2"
-          style="background-color: #9882ac;">Checked-In</button>
+          >Checked-In</button>
         <button [routerLink]="['/homepage/in-flight']" routerLinkActive="active" class="btn btn-outline-dark me-2"
-          style="background-color: #9882ac;">In-Flight</button>
+          >In-Flight</button>
       </span>
-      <span *ngIf="isAdmin" class="mt-4 admin" style="color: #f4f2f8; font-size: x-large;"><strong>Airline and Passenger
+      <span *ngIf="isAdmin" class="mt-4 admin"><strong>Airline and Passenger
           Details for Administration</strong></span>
     </div>
     <div class="user-info navbar-nav nav ms-auto ">
