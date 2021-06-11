@@ -27,9 +27,9 @@ export class EditPassengerComponent implements OnInit {
     this.editForm = this.fb.group({
       firstname: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
-      passportNumber: [null, [Validators.required]],
-      birthDate: [null, [Validators.required]],
-      address: [null, [Validators.required]],
+      passportNumber: [null],
+      birthDate: [null],
+      address: [null],
       flightId: [null, [Validators.required]],
       seatNumber: [null, [Validators.required]],
       checkedIn: [null, [Validators.required]],

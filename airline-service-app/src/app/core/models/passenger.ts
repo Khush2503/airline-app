@@ -3,7 +3,7 @@ export class Passenger {
     firstname: string;
     lastname: string;
     passportNumber: number;
-    birthDate: string;
+    birthDate: Date;
     address: string;
     flightId: string;
     seatNumber: string;

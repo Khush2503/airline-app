@@ -27,9 +27,9 @@ export class PassengerDetailsComponent implements OnInit {
     this.editForm = this.fb.group({
       firstname: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
-      passportNumber: [null, [Validators.required]],
-      birthDate: [null, [Validators.required]],
-      address: [null, [Validators.required]],
+      passportNumber: [null],
+      birthDate: [null],
+      address: [null],
       flightId: [null, [Validators.required]],
       seatNumber: [null, [Validators.required]],
       checkedIn: [null, [Validators.required]],
@@ -53,17 +53,18 @@ export class PassengerDetailsComponent implements OnInit {
   }
 
   /**
-   * Gets passenger
+   * Gets passengers
    */
-  getPassenger() {
+   getPassengers() {
     this.service.getPassengerById(this.idPassenger).subscribe((data: Passenger) => {
+      console.log('Passenger with ID : ' + this.idPassenger + ' : ' + data);
       this.passenger = data;
 
       this.editForm.setValue({
         firstname: this.passenger.firstname,
         lastname: this.passenger.lastname,
         passportNumber: this.passenger.passportNumber,
-        birth_date: this.passenger.birthDate,
+        birthDate: this.passenger.birthDate,
         address: this.passenger.address,
         flightId: this.passenger.flightId,
         seatNumber: this.passenger.seatNumber,

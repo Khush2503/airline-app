@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
 @import "./assets/scss/variables/colors";
 
-@import "~bootstrap/dist/css/bootstrap.css";
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)),
     url("./assets/images/background-image.jpg");
