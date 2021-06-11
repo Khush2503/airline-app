@@ -30,10 +30,9 @@ describe('InFlightAirlineListComponent', () => {
   });
 
   it('should call getFlightDetails and get response as empty array', fakeAsync(() => {
-    const fixture = TestBed.createComponent(InFlightAirlineListComponent);
     const component = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    let spy_getPosts = spyOn(service,"getFlightDetails").and.callFake(() => {
+    const spy_getPosts = spyOn(service, 'getFlightDetails').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
     component.getFlightDetails();
@@ -42,10 +41,9 @@ describe('InFlightAirlineListComponent', () => {
   }));
 
   it('should call getFlightDetailsById and get response as empty array', fakeAsync(() => {
-    const fixture = TestBed.createComponent(InFlightAirlineListComponent);
     const component = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    let spy_getPosts = spyOn(service,"getFlightDetailsById").and.callFake(() => {
+    let spy_getPosts = spyOn(service,'getFlightDetailsById').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
     component.getFlightDetailsById();

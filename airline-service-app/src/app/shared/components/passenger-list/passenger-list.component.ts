@@ -11,14 +11,15 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class PassengerListComponent implements OnInit {
 
-  @Input('flight_id') flight_id: string;
+  @Input() flight_id: string;
   passengers: Passenger[] = [];
   passenger: Passenger;
   id_passenger: number;
   isAdmin: boolean;
   isStaff: boolean;
 
-  constructor(private service: ServiceService,
+  constructor(
+    private service: ServiceService,
     private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class PassengerListComponent implements OnInit {
   getPassengers() {
     this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => {
       this.passengers = data;
-    })
+    });
   }
 
   getPassengersByPassport() {
@@ -61,28 +62,28 @@ export class PassengerListComponent implements OnInit {
   getPassengersCheckedIn() {
     this.service
       .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.checked_in === "yes")))
+      .pipe(map((x) => x.filter((u) => u.checked_in === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 
   getPassengersNotCheckedIn() {
     this.service
       .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.checked_in === "no")))
+      .pipe(map((x) => x.filter((u) => u.checked_in === 'no')))
       .subscribe((data) => (this.passengers = data));
   }
 
   getPassengersInfants() {
     this.service
       .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.infants === "yes")))
+      .pipe(map((x) => x.filter((u) => u.infants === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 
   getPassengersWheelChair() {
     this.service
       .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.wheel_chair === "yes")))
+      .pipe(map((x) => x.filter((u) => u.wheel_chair === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 

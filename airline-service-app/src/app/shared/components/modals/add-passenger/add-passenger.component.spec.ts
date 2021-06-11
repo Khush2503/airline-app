@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store, StoreModule } from '@ngrx/store';
-import { By } from 'protractor';
-import { PassengerReducer } from 'src/app/core/store/reducers/passenger.reducer';
-import { PASSENGER_STATE_NAME } from 'src/app/core/store/selectors/passenger.selector';
 
 import { AddPassengerComponent } from './add-passenger.component';
 
@@ -14,9 +11,7 @@ describe('AddPassengerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AddPassengerComponent ],
-      imports: [ReactiveFormsModule, 
-        StoreModule.forFeature(PASSENGER_STATE_NAME, PassengerReducer),
-        StoreModule.forRoot({}), 
+      imports: [ReactiveFormsModule,
       ],
       providers: []
     })
@@ -51,7 +46,7 @@ describe('AddPassengerComponent', () => {
       infants: null,
       wheel_chair: null,
       ancillary_services: null
-    }
+    };
     expect(createFormGroup.value).toEqual(loginFormValues);
   });
 

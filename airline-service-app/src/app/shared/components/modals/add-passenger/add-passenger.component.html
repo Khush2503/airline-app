@@ -32,52 +32,28 @@
         </div>
 
         <div class="controls mb-2">
-          <label for="passport_number"><strong>Passport Number <span class="lblError text-danger">*</span> :
+          <label for="passport_number"><strong>Passport Number :
             </strong></label>
           <input type="text" id="passport_number" placeholder="Enter your passport_number" class="form-control"
             formControlName="passport_number" />
-          <p class="lblError text-danger" *ngIf="
-      createForm.get('passport_number').hasError('required') &&
-      createForm.get('passport_number').touched
-    ">
-            Enter your Passport Number
-          </p>
         </div>
 
         <div class="controls mb-2">
-          <label for="birth_date"><strong>Date of Birth <span class="lblError text-danger">*</span> : </strong></label>
+          <label for="birth_date"><strong>Date of Birth : </strong></label>
           <input type="date" id="birth_date" placeholder="DD/MM/YYYY" class="form-control"
             formControlName="birth_date" />
-          <p class="lblError text-danger" *ngIf="
-      createForm.get('birth_date').hasError('required') &&
-      createForm.get('birth_date').touched
-    ">
-            Enter your Date of Birth
-          </p>
         </div>
 
         <div class="controls mb-2">
-          <label for="address"><strong>Address <span class="lblError text-danger">*</span> : </strong></label>
+          <label for="address"><strong>Address : </strong></label>
           <input type="text" id="address" placeholder="Enter your address" class="form-control"
-            formControlName="address" required />
-          <p class="lblError text-danger" *ngIf="
-      createForm.get('address').hasError('required') &&
-      createForm.get('address').touched
-    ">
-            Enter your Address
-          </p>
+            formControlName="address" />
         </div>
 
         <div class="controls mb-2">
-          <label for="flight_id"><strong>Flight Number <span class="lblError text-danger">*</span> : </strong></label>
-          <input type="text" id="flight_id" placeholder="Enter your flight_id" class="form-control"
-            formControlName="flight_id" />
-          <p class="lblError text-danger" *ngIf="
-        createForm.get('flight_id').hasError('required') &&
-        createForm.get('flight_id').touched
-      ">
-            Enter your Flight Number
-          </p>
+          <!-- <p> {{ flight_id }} </p> -->
+          <label for="flight_id"><strong>Flight Id : </strong></label>
+          <input readonly id="flight_id" class="form-control-plaintext" formControlName="flight_id" />
         </div>
 
         <div class="controls mb-2">

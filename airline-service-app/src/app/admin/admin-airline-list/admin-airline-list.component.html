@@ -103,7 +103,7 @@
                           </button>
                         </div>
                         <div *ngIf="addService" class="row container-fluid" id="divshow">
-                          <form [formGroup]="service_form" class="row mt-4 mb-2">
+                          <form [formGroup]="formService" class="row mt-4 mb-2">
                             <div class="col-md-6">
                               <label for="service" class="visually-hidden">Add service</label>
                               <input type="text" class="form-control" id="service" placeholder="Add new Service"
@@ -137,11 +137,11 @@
                           </button>
                         </div>
                         <div *ngIf="addItem" class="row container-fluid" id="divshow">
-                          <form [formGroup]="item_form" class="row mt-4 mb-2">
+                          <form [formGroup]="formItem" class="row mt-4 mb-2">
                             <div class="col-md-6">
-                              <label for="shop_item" class="visually-hidden">Add Item</label>
-                              <input type="text" class="form-control" id="shop_item" placeholder="Add new Item"
-                                formControlName="shop_item">
+                              <label for="item" class="visually-hidden">Add Item</label>
+                              <input type="text" class="form-control" id="item" placeholder="Add new Item"
+                                formControlName="item">
                             </div>
                             <div class="col-md-5">
                               <button type="button" class="btn btn-primary"

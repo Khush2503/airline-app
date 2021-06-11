@@ -33,23 +33,23 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    if(this.loginForm.value.role === 'Admin')
+    if ( this.loginForm.value.role === 'Admin' )
     {
-      if(this.loginForm.value.username == 'Admin25' && this.loginForm.value.password === 'Admin@2503') {
+      if ( this.loginForm.value.username === 'Admin25' && this.loginForm.value.password === 'Admin@2503' ) {
         this.setStorageData();
         this.router.navigate(['/admin']);
       }
       else {
-        alert("Invalid Credentials!");
+        alert('Invalid Credentials!');
       }
     }
     else{
-      if(this.loginForm.value.username == 'Staff03' && this.loginForm.value.password === 'Staff@2503') {
+      if (this.loginForm.value.username === 'Staff03' && this.loginForm.value.password === 'Staff@2503') {
         this.setStorageData();
         this.router.navigate(['/homepage']);
       }
       else {
-        alert("Invalid Credentials!");
+        alert('Invalid Credentials!');
       }
     }
   }

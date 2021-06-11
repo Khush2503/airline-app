@@ -43,7 +43,7 @@ export class PassengerDetailsComponent implements OnInit {
     this.passenger = this.editForm.value;
     this.service.editPassenger(this.id_passenger, this.passenger).subscribe((data: Passenger) => {
       this.passenger = data;
-    })
+    });
     this.editForm.reset();
   }
 
@@ -64,6 +64,6 @@ export class PassengerDetailsComponent implements OnInit {
         wheel_chair: this.passenger.wheel_chair,
         ancillary_services: this.passenger.ancillary_services
       });
-    })
+    });
   }
 }

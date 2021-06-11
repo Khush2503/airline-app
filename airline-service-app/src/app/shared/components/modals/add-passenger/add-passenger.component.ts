@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/models/app.state';
 import { Passenger } from 'src/app/core/models/passenger';
 import { ServiceService } from 'src/app/core/services/service.service';
-import { passenger } from 'src/app/core/store/actions/passenger.action';
 
 @Component({
   selector: 'app-add-passenger',
@@ -14,9 +10,11 @@ import { passenger } from 'src/app/core/store/actions/passenger.action';
 })
 export class AddPassengerComponent implements OnInit {
 
+  @Input() flight_id: string;
+
   constructor(
     private fb: FormBuilder,
-    private store: Store<AppState>
+    private service: ServiceService
   ) { }
 
   createForm: FormGroup;
@@ -26,25 +24,27 @@ export class AddPassengerComponent implements OnInit {
     this.createForm = this.fb.group({
       firstname: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
-      passport_number: [null, [Validators.required]],
-      birth_date: [null, [Validators.required]],
-      address: [null, [Validators.required]],
-      flight_id: [null, [Validators.required]],
+      passport_number: [null],
+      birth_date: [null],
+      address: [null],
+      flight_id: [this.flight_id],
       seat_number: [null, [Validators.required]],
       checked_in: [null, [Validators.required]],
       infants: [null, [Validators.required]],
       wheel_chair: [null, [Validators.required]],
       ancillary_services: [null, [Validators.required]],
-    })
+    });
   }
 
   onSubmit() {
     this.passenger = this.createForm.value;
     this.passenger.meal = 'normal';
-    this.passenger.services = ["wifi"];
-    this.passenger.items = ["books"];
+    this.passenger.services = ['wifi'];
+    this.passenger.items = ['books'];
+    this.service.addPassenger(this.passenger).subscribe((data: Passenger) => {
+      console.log(data);
+    });
     this.createForm.reset();
-    this.store.dispatch(passenger(this.passenger));
   }
 
 }

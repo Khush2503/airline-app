@@ -13,10 +13,10 @@ export class StaffAuthGuardService implements CanActivate {
   ) { }
 
   canActivate(): boolean {
-    if (this.localStorageService.retrieve('user') !== null) {  //this.localStorageService.retrieve('user').role !== 'staff'
+    if (this.localStorageService.retrieve('user') !== null) {  // this.localStorageService.retrieve('user').role !== 'staff'
       return true;
     }
-    alert("Unauthorised access");
+    alert('Unauthorised access');
     this.router.navigate(['/errorpage']);
     return false;
   }

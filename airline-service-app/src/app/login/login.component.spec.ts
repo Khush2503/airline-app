@@ -1,10 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LocalStorageService } from 'ngx-webstorage';
-import { By } from 'protractor';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -35,7 +33,7 @@ describe('LoginComponent', () => {
   });
 
   it('email field validity', () => {
-    let email = component.loginForm.controls['username']; (1)
+    const email = component.loginForm.controls['username'];
     expect(email.valid).toBeFalsy();
   });
 
@@ -46,43 +44,43 @@ describe('LoginComponent', () => {
       username: null,
       password: null,
       role: null
-    }
+    };
     expect(loginFormGroup.value).toEqual(loginFormValues);
   });
 
   it('should call admin navigation if role is Admin', () => {
     const spy =  spyOn(component, 'setStorageData');
-    component.loginForm.value.role = 'Admin'
-    component.loginForm.value.username = 'Admin25'
-    component.loginForm.value.password = 'Admin@2503'
-    component.onSubmit();       // should execute if part
+    component.loginForm.value.role = 'Admin';
+    component.loginForm.value.username = 'Admin25';
+    component.loginForm.value.password = 'Admin@2503';
+    component.onSubmit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should give alert if admin credential is wrong', () => {
     const spy = spyOn(window, 'alert');
-    component.loginForm.value.role = 'Admin'
-    component.loginForm.value.username = 'Admin25'
-    component.loginForm.value.password = 'Admin@25'
-    component.onSubmit();       // should execute if part
+    component.loginForm.value.role = 'Admin';
+    component.loginForm.value.username = 'Admin25';
+    component.loginForm.value.password = 'Admin@25';
+    component.onSubmit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call staff navigation if role is Staff', () => {
     const spy =  spyOn(component, 'setStorageData');
-    component.loginForm.value.role = 'Staff'
-    component.loginForm.value.username = 'Staff03'
-    component.loginForm.value.password = 'Staff@2503'
-    component.onSubmit();       // should execute if part
+    component.loginForm.value.role = 'Staff';
+    component.loginForm.value.username = 'Staff03';
+    component.loginForm.value.password = 'Staff@2503';
+    component.onSubmit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should give alert if staff credential is wrong', () => {
     const spy = spyOn(window, 'alert');
-    component.loginForm.value.role = 'Staff'
-    component.loginForm.value.username = 'Staff'
-    component.loginForm.value.password = 'Staff@25'
-    component.onSubmit();       // should execute if part
+    component.loginForm.value.role = 'Staff';
+    component.loginForm.value.username = 'Staff';
+    component.loginForm.value.password = 'Staff@25';
+    component.onSubmit();
     expect(spy).toHaveBeenCalled();
   });
 

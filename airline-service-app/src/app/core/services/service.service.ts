@@ -17,7 +17,7 @@ export class ServiceService {
   getFlightDetails(): Observable<Flight[]> {
     return this.http.get<Flight[]>('http://localhost:3000/flights')
       .pipe(
-        tap(flights => { return flights }),
+        tap(flights => { return flights; }),
         catchError(this.handleError('getFlightDetails', []))
       );
   }
@@ -75,7 +75,6 @@ export class ServiceService {
         catchError(this.handleError<Flight>(`getFlight id=${id}`))
       );
   }
-
 
   
   /**

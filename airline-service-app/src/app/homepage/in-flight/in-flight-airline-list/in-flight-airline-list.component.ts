@@ -12,7 +12,7 @@ export class InFlightAirlineListComponent implements OnInit {
   flights: Flight[];
   flightsSelected: Flight[];
   flightDetails: Flight;
-  check_in: boolean = false;
+  check_in = false;
 
   constructor(private service: ServiceService) { }
 
@@ -29,13 +29,13 @@ export class InFlightAirlineListComponent implements OnInit {
   getFlightDetailsById(number: string) {
     this.service.getFlightDetailsById(number).subscribe((data: Flight[]) => {
       this.flightsSelected = data;
-    })
+    });
   }
 
   getFlightById(id: number) {
     this.service.getFlight(id).subscribe((data: Flight) => {
       this.flightDetails = data;
-    })
+    });
   }
 
 }

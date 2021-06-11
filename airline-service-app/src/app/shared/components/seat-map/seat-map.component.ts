@@ -10,8 +10,8 @@ import { ServiceService } from 'src/app/core/services/service.service';
 })
 export class SeatMapComponent implements OnInit {
 
-  @Input('flight_id') flight_id: string;
-  @Input('check_in') check_in: boolean;
+  @Input() flight_id: string;
+  @Input() check_in: boolean;
   passengers: Passenger[] = null;
   selectedPassenger: Passenger = new Passenger();
 
@@ -19,15 +19,15 @@ export class SeatMapComponent implements OnInit {
   seatNumber2 = ['D', 'E', 'F'];
   seat = new Array(20);
   seat_number: string;
-  addService: boolean = false;
-  addItem: boolean = false;
+  addService = false;
+  addItem = false;
 
   service_form = this.fb.group({
-    "service": [null, Validators.required]
+    'service': [null, Validators.required]
   });
 
   item_form = this.fb.group({
-    "shop_item": [null, Validators.required]
+    'shop_item': [null, Validators.required]
   });
 
   constructor(private service: ServiceService, private fb: FormBuilder) { }
@@ -37,7 +37,7 @@ export class SeatMapComponent implements OnInit {
   }
 
   getPassengers() {
-    this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => { this.passengers = data });
+    this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => { this.passengers = data; });
   }
 
   onRefresh() {
@@ -48,7 +48,7 @@ export class SeatMapComponent implements OnInit {
   onSeatView(x: string, y: number) {
     this.seat_number = x.concat(y.toString());
     this.onRefresh();
-    for (let passenger of this.passengers) {
+    for (const passenger of this.passengers) {
       if (passenger.seat_number === this.seat_number) {
         this.selectedPassenger = passenger;
       }
@@ -63,7 +63,7 @@ export class SeatMapComponent implements OnInit {
       passenger.checked_in = 'yes';
     }
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
-    })
+    });
     this.getPassengers();
   }
 
@@ -93,7 +93,7 @@ export class SeatMapComponent implements OnInit {
 
   deleteService(service: string, passenger: Passenger) {
     passenger.services.forEach((value, index) => {
-      if (value == service)
+      if (value === service)
         passenger.services.splice(index, 1);
     });
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
@@ -103,7 +103,7 @@ export class SeatMapComponent implements OnInit {
 
   deleteItem(item: string, passenger: Passenger) {
     passenger.items.forEach((value, index) => {
-      if (value == item)
+      if (value === item)
         passenger.items.splice(index, 1);
     });
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
