@@ -11,22 +11,20 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class PassengerListComponent implements OnInit {
 
-  @Input() flight_id: string;
+  @Input() flightId: string;
   passengers: Passenger[] = [];
   passenger: Passenger;
-  id_passenger: number;
+  idPassenger: number;
   isAdmin: boolean;
   isStaff: boolean;
 
-<<<<<<< HEAD
-  constructor(private service: ServiceService,
-              private localStorageService: LocalStorageService) { }
-=======
   constructor(
     private service: ServiceService,
     private localStorageService: LocalStorageService) { }
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
     this.getPassengers();
     if (this.localStorageService.retrieve('user').username === 'Admin25') {
@@ -37,66 +35,97 @@ export class PassengerListComponent implements OnInit {
     }
   }
 
+  /**
+   * Gets passengers
+   */
   getPassengers() {
-    this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => {
+    this.service.getPassengers(this.flightId).subscribe((data: Passenger[]) => {
       this.passengers = data;
     });
   }
 
+  /**
+   * Gets passengers by passport
+   */
   getPassengersByPassport() {
     this.service
-      .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.passport_number === null)))
+      .getPassengers(this.flightId)
+      .pipe(map((x) => x.filter((u) => u.passportNumber === null)))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers by address
+   */
   getPassengersByAddress() {
     this.service
-      .getPassengers(this.flight_id)
+      .getPassengers(this.flightId)
       .pipe(map((x) => x.filter((u) => u.address === null)))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers by dob
+   */
   getPassengersByDOB() {
     this.service
-      .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.birth_date === null)))
+      .getPassengers(this.flightId)
+      .pipe(map((x) => x.filter((u) => u.birthDate === null)))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers checked in
+   */
   getPassengersCheckedIn() {
     this.service
-      .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.checked_in === 'yes')))
+      .getPassengers(this.flightId)
+      .pipe(map((x) => x.filter((u) => u.checkedIn === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers not checked in
+   */
   getPassengersNotCheckedIn() {
     this.service
-      .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.checked_in === 'no')))
+      .getPassengers(this.flightId)
+      .pipe(map((x) => x.filter((u) => u.checkedIn === 'no')))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers infants
+   */
   getPassengersInfants() {
     this.service
-      .getPassengers(this.flight_id)
+      .getPassengers(this.flightId)
       .pipe(map((x) => x.filter((u) => u.infants === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passengers wheel chair
+   */
   getPassengersWheelChair() {
     this.service
-      .getPassengers(this.flight_id)
-      .pipe(map((x) => x.filter((u) => u.wheel_chair === 'yes')))
+      .getPassengers(this.flightId)
+      .pipe(map((x) => x.filter((u) => u.wheelChair === 'yes')))
       .subscribe((data) => (this.passengers = data));
   }
 
+  /**
+   * Gets passenger
+   * @param object 
+   */
   getPassenger(object: Passenger) {
     this.passenger = object;
-    this.id_passenger = this.passenger.id;
+    this.idPassenger = this.passenger.id;
   }
 
+  /**
+   * Determines whether refresh on
+   */
   onRefresh() {
     this.getPassengers();
   }

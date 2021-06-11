@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/core/services/service.service';
 })
 export class AddPassengerComponent implements OnInit {
 
-  @Input() flight_id: string;
+  @Input() flightId: string;
 
   constructor(
     private fb: FormBuilder,
@@ -20,33 +20,36 @@ export class AddPassengerComponent implements OnInit {
   createForm: FormGroup;
   passenger: Passenger;
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
     this.createForm = this.fb.group({
       firstname: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
-      passport_number: [null],
-      birth_date: [null],
+      passportNumber: [null],
+      birthDate: [null],
       address: [null],
-      flight_id: [this.flight_id],
-      seat_number: [null, [Validators.required]],
-      checked_in: [null, [Validators.required]],
+      flightId: [this.flightId],
+      seatNumber: [null, [Validators.required]],
+      checkedIn: [null, [Validators.required]],
       infants: [null, [Validators.required]],
-      wheel_chair: [null, [Validators.required]],
-      ancillary_services: [null, [Validators.required]],
+      wheelChair: [null, [Validators.required]],
+      ancillaryServices: [null, [Validators.required]],
     });
   }
 
+  /**
+   * Determines whether submit on
+   */
   onSubmit() {
     this.passenger = this.createForm.value;
     this.passenger.meal = 'normal';
     this.passenger.services = ['wifi'];
     this.passenger.items = ['books'];
-<<<<<<< HEAD
-=======
     this.service.addPassenger(this.passenger).subscribe((data: Passenger) => {
       console.log(data);
     });
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
     this.createForm.reset();
   }
 

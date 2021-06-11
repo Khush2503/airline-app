@@ -63,7 +63,7 @@
       <tr *ngFor="let passenger of passengers">
         <td>{{ passenger.firstname }}</td>
         <td>{{ passenger.lastname }}</td>
-        <td>{{ passenger.seat_number }}</td>
+        <td>{{ passenger.seatNumber }}</td>
         <td>
           <p *ngFor="let service of passenger.services"> {{ service }} </p>
         </td>
@@ -84,8 +84,8 @@
 </div>
 
 <app-add-passenger class="offcanvas offcanvas-end" tabindex="-1" id="addPassenger" 
-aria-labelledby="addPassengerLabel" [flight_id]="flight_id"></app-add-passenger>
+aria-labelledby="addPassengerLabel" [flightId]="flightId"></app-add-passenger>
 <app-edit-passenger class="offcanvas offcanvas-end" tabindex="-1" id="editPassenger"
-  aria-labelledby="editPassengerLabel" [id_passenger]="id_passenger"></app-edit-passenger>
+  aria-labelledby="editPassengerLabel" [idPassenger]="idPassenger"></app-edit-passenger>
 <app-passenger-details class="offcanvas offcanvas-end" tabindex="-1" id="passengerDetails"
-  aria-labelledby="passengerDetailsLabel" [id_passenger]="id_passenger"></app-passenger-details>
+  aria-labelledby="passengerDetailsLabel" [idPassenger]="idPassenger"></app-passenger-details>

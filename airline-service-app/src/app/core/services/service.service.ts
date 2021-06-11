@@ -13,70 +13,114 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-
+  /**
+   * Gets flight details
+   * @returns flight details 
+   */
   getFlightDetails(): Observable<Flight[]> {
-    return this.http.get<Flight[]>('http://localhost:3000/flights')
+    return this.http.get<Flight[]>('/api/flights')
       .pipe(
-        tap(flights => { return flights; }),
+        tap(flights => flights),
         catchError(this.handleError('getFlightDetails', []))
       );
   }
 
-  getFlightDetailsById(number: string): Observable<Flight[]> {
-    return this.http.get<Flight[]>('http://localhost:3000/flights')
-      .pipe(map((x) => x.filter((u) => u.number === number)));
+  /**
+   * Gets flight details by id
+   * @param flightNumber 
+   * @returns flight details by id 
+   */
+  getFlightDetailsById(flightNumber: string): Observable<Flight[]> {
+    return this.http.get<Flight[]>('/api/flights')
+      .pipe(map((x) => x.filter((u) => u.number === flightNumber)));
   }
 
+  /**
+   * Gets users
+   * @returns users 
+   */
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:3000/users');
+    return this.http.get<User[]>('/api/users');
   }
 
-  getPassengers(flight_id: string): Observable<Passenger[]> {
-    return this.http.get<Passenger[]>('http://localhost:3000/passengers')
-      .pipe(map((x) => x.filter((u) => u.flight_id === flight_id)));
+  /**
+   * Gets passengers
+   * @param flightId 
+   * @returns passengers 
+   */
+  getPassengers(flightId: string): Observable<Passenger[]> {
+    return this.http.get<Passenger[]>('/api/passengers')
+      .pipe(map((x) => x.filter((u) => u.flightId === flightId)));
   }
 
+  /**
+   * Gets passenger by id
+   * @param id 
+   * @returns passenger by id 
+   */
   getPassengerById(id: number): Observable<Passenger> {
-    return this.http.get<Passenger>('http://localhost:3000/passengers/' + id)
+    return this.http.get<Passenger>('/api/passengers/' + id)
       .pipe(
-        tap(passenger => console.log('fetched passenger')),
+        tap(_ => console.log('fetched passenger')),
         catchError(this.handleError<Passenger>(`getPassengerById id=${id}`))
       );
   }
 
+  /**
+   * Edits passenger
+   * @param id 
+   * @param passenger 
+   * @returns passenger 
+   */
   editPassenger(id: number, passenger: Passenger): Observable<Passenger> {
-    return this.http.put<Passenger>('http://localhost:3000/passengers/' + id, passenger)
+    return this.http.put<Passenger>('/api/passengers/' + id, passenger)
       .pipe(
         tap(_ => console.log(`updated passenger: id=${passenger.id}`)),
         catchError(this.handleError<Passenger>('editPassenger'))
       );
   }
 
+  /**
+   * Adds passenger
+   * @param passenger 
+   * @returns passenger 
+   */
   addPassenger(passenger: Passenger): Observable<Passenger> {
-    return this.http.post<Passenger>('http://localhost:3000/passengers', passenger)
+    return this.http.post<Passenger>('/api/passengers', passenger)
       .pipe(
-        tap(passenger => console.log('successfully added passenger')),
+        tap(_ => console.log('successfully added passenger')),
         catchError(this.handleError<Passenger>('addPassenger'))
       );
   }
 
+  /**
+   * Edits flight
+   * @param id 
+   * @param flight 
+   * @returns flight 
+   */
   editFlight(id: number, flight: Flight): Observable<Flight> {
-    return this.http.put<Flight>('http://localhost:3000/flights/' + id, flight)
+    return this.http.put<Flight>('/api/flights/' + id, flight)
       .pipe(
         tap(_ => console.log(`updated flight: id=${flight.id}`)),
         catchError(this.handleError<Flight>('editFlight'))
       );
   }
 
+  /**
+   * Gets flight
+   * @param id 
+   * @returns flight 
+   */
   getFlight(id: number): Observable<Flight> {
-    return this.http.get<Flight>('http://localhost:3000/flights/' + id)
+    return this.http.get<Flight>('/api/flights/' + id)
       .pipe(
-        tap(flight => console.log('fetched flight')),
+        tap(_ => console.log('fetched flight')),
         catchError(this.handleError<Flight>(`getFlight id=${id}`))
       );
   }
 
-  
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

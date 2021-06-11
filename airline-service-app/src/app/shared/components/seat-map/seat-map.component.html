@@ -7,26 +7,13 @@
     <strong>Cockpit-layout</strong>
   </h2>
 
-  <div *ngIf="check_in">
+  <div *ngIf="checkIn">
     <table class="table table-borderless">
       <tbody *ngFor="let y of seatNumber1">
         <td *ngFor="let x of seat; let i=index">
           <tr>
-            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2"
-              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
-              [ngStyle]="{
-                backgroundImage: 
-                isSeatAllocated(y,i+1)
-                ? (isCheckedIn(y,i+1)
-                  ? (hasInfants(y,i+1) 
-                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-all.JPG)' : 'url(../../../../assets/images/ci-infant.JPG)') 
-                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-wc.JPG)' : 'url(../../../../assets/images/check-in.JPG)')) 
-                  : (hasInfants(y,i+1) 
-                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-all.JPG)' : 'url(../../../../assets/images/nci-infant.JPG)') 
-                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-wc.JPG)' : 'url(../../../../assets/images/not-check-in.JPG)')))
-                : ('url(../../../../assets/images/no-seat.JPG)')
-              }"
-              >
+            <button (click)="onSeatView(y,i+1)" class="seat-button btn btn-outline-light mt-2"
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
               {{y}}{{i+1}}
             </button>
           </tr>
@@ -38,21 +25,8 @@
       <tbody *ngFor="let y of seatNumber2">
         <td *ngFor="let x of seat; let i=index">
           <tr>
-            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" 
-              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
-              [ngStyle]="{
-                backgroundImage: 
-                isSeatAllocated(y,i+1)
-                ? (isCheckedIn(y,i+1)
-                  ? (hasInfants(y,i+1) 
-                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-all.JPG)' : 'url(../../../../assets/images/ci-infant.JPG)') 
-                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/ci-wc.JPG)' : 'url(../../../../assets/images/check-in.JPG)')) 
-                  : (hasInfants(y,i+1) 
-                     ? (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-all.JPG)' : 'url(../../../../assets/images/nci-infant.JPG)') 
-                     : (needWheelChair(y,i+1) ? 'url(../../../../assets/images/nci-wc.JPG)' : 'url(../../../../assets/images/not-check-in.JPG)')))
-                : ('url(../../../../assets/images/no-seat.JPG)')
-              }"
-              >
+            <button (click)="onSeatView(y,i+1)" class="seat-button btn btn-outline-light mt-2" 
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
               {{y}}{{i+1}}
             </button>
           </tr>
@@ -61,19 +35,13 @@
     </table>
   </div>
 
-  <div *ngIf="!check_in">
+  <div *ngIf="!checkIn">
     <table class="table table-borderless">
       <tbody *ngFor="let y of seatNumber1">
         <td *ngFor="let x of seat; let i=index">
           <tr>
-            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2"
+            <button (click)="onSeatView(y,i+1)" class="seat-button btn btn-outline-light mt-2"
               type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
-              [ngStyle]="{
-                backgroundImage: 
-                check_in && isCheckedIn(y,i+1)
-                ? 'url(../../../../assets/images/check-in.JPG)'
-                : 'url(../../../../assets/images/no-seat.JPG)'
-              }"
               >
               {{y}}{{i+1}}
             </button>
@@ -86,15 +54,8 @@
       <tbody *ngFor="let y of seatNumber2">
         <td *ngFor="let x of seat; let i=index">
           <tr>
-            <button (click)="onSeatView(y,i+1)" class="btn btn-outline-light mt-2" 
-              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
-              [ngStyle]="{
-                backgroundImage: 
-                check_in && isCheckedIn(y,i+1)
-                ? 'url(../../../../assets/images/check-in.JPG)'
-                : 'url(../../../../assets/images/no-seat.JPG)'
-              }"
-              >
+            <button (click)="onSeatView(y,i+1)" class="seat-button btn btn-outline-light mt-2" 
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
               {{y}}{{i+1}}
             </button>
           </tr>
@@ -104,7 +65,7 @@
   </div>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel" *ngIf="check_in">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel" *ngIf="checkIn">
   <div class="offcanvas-header">
     <h1 id="editPassengerLabel" *ngIf="selectedPassenger!=null"><strong> {{ selectedPassenger.firstname }} {{
         selectedPassenger.lastname }} </strong></h1>
@@ -131,9 +92,9 @@
           </tr>
         </td>
         <td>
-          <tr>{{ selectedPassenger.seat_number }}</tr>
-          <tr>{{ selectedPassenger.passport_number }}</tr>
-          <tr>{{ selectedPassenger.birth_date }}</tr>
+          <tr>{{ selectedPassenger.seatNumber }}</tr>
+          <tr>{{ selectedPassenger.passportNumber }}</tr>
+          <tr>{{ selectedPassenger.birthDate }}</tr>
           <tr>{{ selectedPassenger.address }}</tr>
         </td>
       </table>
@@ -141,14 +102,14 @@
       <h3><strong>Services Required :- </strong></h3>
       <div class="text-success">
         <h4 *ngIf="selectedPassenger.infants == 'yes'">Person has infants.</h4>
-        <h4 *ngIf="selectedPassenger.wheel_chair == 'yes'">Person requires wheel chair.</h4>
-        <h4 *ngIf="selectedPassenger.ancillary_services == 'yes'">Person requires Ancillary Services.</h4>
+        <h4 *ngIf="selectedPassenger.wheelChair == 'yes'">Person requires wheel chair.</h4>
+        <h4 *ngIf="selectedPassenger.ancillaryServices == 'yes'">Person requires Ancillary Services.</h4>
       </div>
       <hr>
       <button class="btn btn-primary me-2" (click)="editCheckIn(selectedPassenger)"
-        *ngIf="selectedPassenger.checked_in == 'yes'">Undo Checked-In</button>
+        *ngIf="selectedPassenger.checkedIn == 'yes'">Undo Checked-In</button>
       <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
-        *ngIf="selectedPassenger.checked_in == 'no'">Check-In</button>
+        *ngIf="selectedPassenger.checkedIn == 'no'">Check-In</button>
       <button class="cancel-button btn btn-block" type="button"
         data-bs-dismiss="offcanvas">Cancel</button>
     </div>
@@ -157,12 +118,7 @@
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="seatDetails" aria-labelledby="seatDetailsLabel"
-  *ngIf="!check_in">
-  <div class="offcanvas-header">
-    <h1 id="editPassengerLabel"><strong>In-Flight status of Passenger</strong></h1>
-    <button type="button" class="btn-close btn-lg btn-danger text-reset" data-bs-dismiss="offcanvas"
-      aria-label="Close"></button>
-  </div>
+  *ngIf="!checkIn">
   <div class="offcanvas-body" *ngIf="selectedPassenger!=null">
     <div class="container">
       <img class="mb-2" src="../../../assets/images/png/flight-icon.png" alt="Logo" style="width: 100px" />
@@ -180,8 +136,8 @@
         </td>
         <td>
           <tr>{{ selectedPassenger.firstname }} {{ selectedPassenger.lastname }}</tr>
-          <tr>{{ selectedPassenger.seat_number }}</tr>
-          <tr>{{ selectedPassenger.passport_number }}</tr>
+          <tr>{{ selectedPassenger.seatNumber }}</tr>
+          <tr>{{ selectedPassenger.passportNumber }}</tr>
         </td>
       </table>
       <hr>
@@ -197,12 +153,12 @@
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               Add new services
-              <button class="form-button btn btn-block btn-sm" (click)="serviceForm()">
+              <button class="form-button btn btn-block btn-sm" (click)="serviceFormAdd()">
                 <img src="../../../assets/images/svg/add.svg" alt="Edit Service" />
               </button>
             </div>
             <div *ngIf="addService" class="row container-fluid" id="divshow">
-              <form [formGroup]="service_form" class="row mt-4 mb-2">
+              <form [formGroup]="serviceForm" class="row mt-4 mb-2">
                 <div class="col-md-6">
                   <label for="service" class="visually-hidden">Add service</label>
                   <input type="text" class="form-control" id="service" placeholder="Add new Service"
@@ -230,12 +186,12 @@
           <div class="ms-2 me-auto">
             <div class="fw-bold">
               Add new shop items
-              <button class="form-button btn btn-block btn-sm" (click)="itemForm()">
+              <button class="form-button btn btn-block btn-sm" (click)="itemFormAdd()">
                 <img src="../../../assets/images/svg/add.svg" alt="Add Service" />
               </button>
             </div>
             <div *ngIf="addItem" class="row container-fluid" id="divshow">
-              <form [formGroup]="item_form" class="row mt-4 mb-2">
+              <form [formGroup]="itemForm" class="row mt-4 mb-2">
                 <div class="col-md-6">
                   <label for="shop_item" class="visually-hidden">Add Item</label>
                   <input type="text" class="form-control" id="shop_item" placeholder="Add new Item"
@@ -260,9 +216,9 @@
       <button class="btn btn-primary me-2" (click)="editMealPreference(selectedPassenger)">Change Meal
         Preference</button>
       <button class="btn btn-primary me-2" (click)="editCheckIn(selectedPassenger)"
-        *ngIf="selectedPassenger.checked_in == 'yes' && check_in">Undo Checked-In</button>
+        *ngIf="selectedPassenger.checkedIn == 'yes' && checkIn">Undo Checked-In</button>
       <button class="btn btn-info me-2" (click)="editCheckIn(selectedPassenger)"
-        *ngIf="selectedPassenger.checked_in == 'no' && check_in">Check-In</button>
+        *ngIf="selectedPassenger.checkedIn == 'no' && checkIn">Check-In</button>
       <button class="cancel-button btn btn-block" type="button"
         data-bs-dismiss="offcanvas">Cancel</button>
     </div>

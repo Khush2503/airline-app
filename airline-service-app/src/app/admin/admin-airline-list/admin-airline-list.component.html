@@ -61,7 +61,7 @@
                   </tr>
                   <tr>
                     {{
-                    flightSelected.route_Id
+                    flightSelected.routeId
                     }}
                   </tr>
                 </td>
@@ -84,7 +84,7 @@
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-passenger" role="tabpanel"
                   aria-labelledby="nav-passenger-tab">
-                  <app-passenger-list [flight_id]="flightSelected.number"></app-passenger-list>
+                  <app-passenger-list [flightId]="flightSelected.number"></app-passenger-list>
                 </div>
                 <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab">
                   <ol class="list-group">
@@ -114,7 +114,7 @@
                             </div>
                           </form>
                         </div>
-                        <div *ngFor="let service of flightSelected.ancillary_services" class="mb-1">
+                        <div *ngFor="let service of flightSelected.ancillaryServices" class="mb-1">
                           {{ service }}
                           <button type-button class="btn btn-close btn-sm"
                             (click)="deleteService(service, flightSelected)" aria-label="Close">
@@ -148,7 +148,7 @@
                             </div>
                           </form>
                         </div>
-                        <div *ngFor="let item of flightSelected.shop_items" class="mb-1">
+                        <div *ngFor="let item of flightSelected.shopItems" class="mb-1">
                           {{ item }}
                           <button type="button" class="btn btn-close btn-sm" (click)="deleteItem(item, flightSelected)"
                             aria-label="Close">

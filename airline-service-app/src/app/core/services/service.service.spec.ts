@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Flight } from '../models/flight';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { LocalStorageService } from 'ngx-webstorage';
 import { ServiceService } from './service.service';
 import { User } from '../models/user';
@@ -16,15 +16,15 @@ describe('ServiceService', () => {
       providers: [LocalStorageService]
     });
     service = TestBed.inject(ServiceService);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch flights as an observable', async(inject([HttpTestingController, ServiceService],
-    (httpClient: HttpTestingController, service: ServiceService) => {
+  it('should fetch flights as an observable', waitForAsync(inject([HttpTestingController, ServiceService],
+    (servicee: ServiceService) => {
       const flights = [
         {
           id: 1,
@@ -111,9 +111,9 @@ describe('ServiceService', () => {
         }
       ];
 
-      service.getFlightDetails()
-        .subscribe((flights: Flight[]) => {
-          expect(flights.length).toBe(4);
+      servicee.getFlightDetails()
+        .subscribe((flightss: Flight[]) => {
+          expect(flightss.length).toBe(4);
         });
 
       const req = httpMock.expectOne('http://localhost:3000/flights');
@@ -123,8 +123,8 @@ describe('ServiceService', () => {
       httpMock.verify();
     })));
 
-  it('should fetch users as an observable', async(inject([HttpTestingController, ServiceService],
-    (httpClient: HttpTestingController, service: ServiceService) => {
+  it('should fetch users as an observable', waitForAsync(inject([HttpTestingController, ServiceService],
+    (serviceee: ServiceService) => {
       const users = [
         {
           id: 1,
@@ -141,13 +141,13 @@ describe('ServiceService', () => {
           password: 'Staff@2503'
         }
       ];
-      service.getUsers()
-        .subscribe((users: User[]) => {
-          expect(users.length).toBe(2);
+      serviceee.getUsers()
+        .subscribe((userss: User[]) => {
+          expect(userss.length).toBe(2);
         });
 
-        const req = httpMock.expectOne('http://localhost:3000/users');
-        expect(req.request.method).toBe('GET');
+      const req = httpMock.expectOne('http://localhost:3000/users');
+      expect(req.request.method).toBe('GET');
 
       req.flush(users);
       httpMock.verify();

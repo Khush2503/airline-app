@@ -26,50 +26,79 @@ export class AdminAirlineListComponent implements OnInit {
 
   constructor(private service: ServiceService, private fb: FormBuilder) { }
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
     this.getFlightDetails();
   }
 
+  /**
+   * Gets flight details
+   */
   getFlightDetails() {
     this.service.getFlightDetails().subscribe((data: Flight[]) => {
       this.flights = data;
     });
   }
 
-  getFlightDetailsById(number: string) {
-    this.service.getFlightDetailsById(number).subscribe((data: Flight[]) => {
+  /**
+   * Gets flight details by id
+   * @param flightNumber 
+   */
+  getFlightDetailsById(flightNumber: string) {
+    this.service.getFlightDetailsById(flightNumber).subscribe((data: Flight[]) => {
       this.flightsSelected = data;
     });
   }
 
+  /**
+   * Services form
+   */
   serviceForm() {
     this.addService = !this.addService;
   }
 
+  /**
+   * Items form
+   */
   itemForm() {
     this.addItem = !this.addItem;
   }
 
+  /**
+   * Saves service
+   * @param flight 
+   */
   saveService(flight: Flight) {
     this.addService = !this.addService;
-    flight.ancillary_services.push(this.formService.value.service);
+    flight.ancillaryServices.push(this.formService.value.service);
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
     });
     this.getFlightById(flight.id);
   }
 
+  /**
+   * Saves item
+   * @param flight 
+   */
   saveItem(flight: Flight) {
     this.addItem = !this.addItem;
-    flight.shop_items.push(this.formItem.value.item);
+    flight.shopItems.push(this.formItem.value.item);
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
     });
     this.getFlightById(flight.id);
   }
 
+  /**
+   * Deletes service
+   * @param service 
+   * @param flight 
+   */
   deleteService(service: string, flight: Flight) {
-    flight.ancillary_services.forEach((value, index) => {
+    flight.ancillaryServices.forEach((value, index) => {
       if (value === service) {
-        flight.ancillary_services.splice(index, 1);
+        flight.ancillaryServices.splice(index, 1);
       }
     });
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
@@ -77,10 +106,15 @@ export class AdminAirlineListComponent implements OnInit {
     this.getFlightById(flight.id);
   }
 
+  /**
+   * Deletes item
+   * @param item 
+   * @param flight 
+   */
   deleteItem(item: string, flight: Flight) {
-    flight.shop_items.forEach((value, index) => {
+    flight.shopItems.forEach((value, index) => {
       if (value === item) {
-        flight.shop_items.splice(index, 1);
+        flight.shopItems.splice(index, 1);
       }
     });
     this.service.editFlight(flight.id, flight).subscribe((data: Flight) => {
@@ -88,6 +122,10 @@ export class AdminAirlineListComponent implements OnInit {
     this.getFlightById(flight.id);
   }
 
+  /**
+   * Gets flight by id
+   * @param id 
+   */
   getFlightById(id: number) {
     this.service.getFlight(id).subscribe((data: Flight) => {
       this.flightDetails = data;

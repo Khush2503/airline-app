@@ -1,6 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Store, StoreModule } from '@ngrx/store';
 
 import { AddPassengerComponent } from './add-passenger.component';
 
@@ -12,11 +12,7 @@ describe('AddPassengerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AddPassengerComponent ],
       imports: [ReactiveFormsModule,
-<<<<<<< HEAD
-        StoreModule.forFeature(PASSENGER_STATE_NAME, PassengerReducer),
-        StoreModule.forRoot({}),
-=======
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
+        HttpClientTestingModule
       ],
       providers: []
     })

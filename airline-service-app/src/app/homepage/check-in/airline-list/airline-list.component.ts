@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from 'src/app/core/models/flight';
-import { Passenger } from 'src/app/core/models/passenger';
 import { ServiceService } from 'src/app/core/services/service.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class AirlineListComponent implements OnInit {
   flights: Flight[];
   flightsSelected: Flight[];
   flightDetails: Flight;
-  check_in = true;
+  checkIn = true;
 
   constructor(private service: ServiceService) { }
 
@@ -21,18 +20,29 @@ export class AirlineListComponent implements OnInit {
     this.getFlightDetails();
   }
 
+  /**
+   * Gets flight details
+   */
   getFlightDetails() {
     this.service.getFlightDetails().subscribe((data: Flight[]) => {
       this.flights = data;
     });
   }
 
+  /**
+   * Gets flight details by id
+   * @param num 
+   */
   getFlightDetailsById(num: string) {
     this.service.getFlightDetailsById(num).subscribe((data: Flight[]) => {
       this.flightsSelected = data;
     });
   }
 
+  /**
+   * Gets flight by id
+   * @param id 
+   */
   getFlightById(id: number) {
     this.service.getFlight(id).subscribe((data: Flight) => {
       this.flightDetails = data;

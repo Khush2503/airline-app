@@ -54,11 +54,11 @@
                                 <td>
                                     <tr>{{ flightSelected.number }}</tr>
                                     <tr>{{ flightSelected.partner }}</tr>
-                                    <tr>{{ flightSelected.route_Id }}</tr>
+                                    <tr>{{ flightSelected.routeId }}</tr>
                                 </td>
                             </table>
                             <hr>
-                            <app-passenger-list [flight_id]="flightSelected.number"></app-passenger-list>
+                            <app-passenger-list [flightId]="flightSelected.number"></app-passenger-list>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">
@@ -80,7 +80,7 @@
                             </h1>
                         </div>
                         <div class="modal-body">
-                            <app-seat-map [flight_id]="flightSelected.number" [check_in]="check_in" [passengers]="passengers"></app-seat-map>
+                            <app-seat-map [flightId]="flightSelected.number" [checkIn]="checkIn"></app-seat-map>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">

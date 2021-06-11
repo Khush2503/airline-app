@@ -10,13 +10,16 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class HeaderComponent implements OnInit {
 
-<<<<<<< HEAD
-  name: String;
-=======
   name: string;
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   isAdmin = false;
   isStaff = false;
+
+  /**
+   * Creates an instance of header component.
+   * @param localStorageService 
+   * @param router 
+   * @param location 
+   */
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -31,6 +34,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
     this.name = this.localStorageService.retrieve('user').name;
 
@@ -42,11 +48,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Logouts header component
+   */
   logout() {
     this.localStorageService.clear('user');
     this.isAdmin = false;
     this.isStaff = false;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
 

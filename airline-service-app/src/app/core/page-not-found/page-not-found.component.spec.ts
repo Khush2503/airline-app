@@ -27,10 +27,10 @@ describe('PageNotFoundComponent', () => {
 
   describe('navigate to login page', () => {
     it('navigate Example', () => {
-        const routerstub: Router = TestBed.get(Router);
+        const routerstub: Router = TestBed.inject(Router);
         spyOn(routerstub, 'navigate');
         component.onClick();
-        expect(routerstub.navigate).toHaveBeenCalledWith(['/login']);
+        expect(routerstub.navigate).toHaveBeenCalledWith(['/']);
     });
   });
 

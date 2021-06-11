@@ -1,7 +1,7 @@
 @import "../../../../assets/scss/variables/colors";
 
 .container-fluid{
-    .refresh{
+    .refresh, .seat-button{
         background-color: map-get($colors, "background", "violet-pale"); 
     }
 }

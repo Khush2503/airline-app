@@ -8,7 +8,7 @@ export class Flight {
     time: string;
     number: string;
     partner: string;
-    route_Id: string;
-    ancillary_services: string[];
-    shop_items: string[];
+    routeId: string;
+    ancillaryServices: string[];
+    shopItems: string[];
 }

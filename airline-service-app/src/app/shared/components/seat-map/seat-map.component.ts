@@ -10,132 +10,155 @@ import { ServiceService } from 'src/app/core/services/service.service';
 })
 export class SeatMapComponent implements OnInit {
 
-<<<<<<< HEAD
-  @Input('flight_id') flight_id: string;
-  @Input('check_in') check_in: boolean;
-  @Input('passengers') passengers: Passenger[] = [];
-=======
-  @Input() flight_id: string;
-  @Input() check_in: boolean;
+  @Input() flightId: string;
+  @Input() checkIn: boolean;
   passengers: Passenger[] = null;
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   selectedPassenger: Passenger = new Passenger();
 
   seatNumber1 = ['A', 'B', 'C'];
   seatNumber2 = ['D', 'E', 'F'];
   seat = new Array(20);
-  seat_number: string;
+  seatNumber: string;
   addService = false;
   addItem = false;
 
-  service_form = this.fb.group({
-<<<<<<< HEAD
+  serviceForm = this.fb.group({
     service: [null, Validators.required]
   });
 
-  item_form = this.fb.group({
+  itemForm = this.fb.group({
     shop_item: [null, Validators.required]
-=======
-    'service': [null, Validators.required]
-  });
-
-  item_form = this.fb.group({
-    'shop_item': [null, Validators.required]
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   });
 
   constructor(private service: ServiceService, private fb: FormBuilder) { }
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
-<<<<<<< HEAD
-=======
     this.getPassengers();
   }
 
+  /**
+   * Gets passengers
+   */
   getPassengers() {
-    this.service.getPassengers(this.flight_id).subscribe((data: Passenger[]) => { this.passengers = data; });
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
+    this.service.getPassengers(this.flightId).subscribe((data: Passenger[]) => { this.passengers = data; });
   }
 
+  /**
+   * Determines whether refresh on
+   */
   onRefresh() {
+    this.getPassengers();
     this.selectedPassenger = null;
   }
 
+  /**
+   * Determines whether seat view on
+   * @param x 
+   * @param y 
+   */
   onSeatView(x: string, y: number) {
-    this.seat_number = x.concat(y.toString());
+    this.seatNumber = x.concat(y.toString());
     this.onRefresh();
     for (const passenger of this.passengers) {
-      if (passenger.seat_number === this.seat_number) {
+      if (passenger.seatNumber === this.seatNumber) {
         this.selectedPassenger = passenger;
       }
     }
   }
 
+  /**
+   * Edits check in
+   * @param passenger 
+   */
   editCheckIn(passenger: Passenger) {
-    if (passenger.checked_in === 'yes') {
-      passenger.checked_in = 'no';
+    if (passenger.checkedIn === 'yes') {
+      passenger.checkedIn = 'no';
     }
     else {
-      passenger.checked_in = 'yes';
+      passenger.checkedIn = 'yes';
     }
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
-<<<<<<< HEAD
-=======
     this.getPassengers();
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
   }
 
-  serviceForm() {
+  /**
+   * Services form add
+   */
+  serviceFormAdd() {
     this.addService = !this.addService;
   }
 
-  itemForm() {
+  /**
+   * Items form add
+   */
+  itemFormAdd() {
     this.addItem = !this.addItem;
   }
 
+  /**
+   * Saves service
+   * @param passenger 
+   */
   saveService(passenger: Passenger) {
     this.addService = !this.addService;
-    passenger.services.push(this.service_form.value.service);
+    passenger.services.push(this.serviceForm.value.service);
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+    this.getPassengers();
   }
 
+  /**
+   * Saves item
+   * @param passenger 
+   */
   saveItem(passenger: Passenger) {
     this.addItem = !this.addItem;
-    passenger.items.push(this.item_form.value.shop_item);
+    passenger.items.push(this.itemForm.value.shop_item);
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+    this.getPassengers();
   }
 
+  /**
+   * Deletes service
+   * @param service 
+   * @param passenger 
+   */
   deleteService(service: string, passenger: Passenger) {
     passenger.services.forEach((value, index) => {
-<<<<<<< HEAD
-      if (value == service) {
-=======
-      if (value === service)
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
+      if (value === service) {
         passenger.services.splice(index, 1);
       }
     });
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+    this.getPassengers();
   }
 
+  /**
+   * Deletes item
+   * @param item 
+   * @param passenger 
+   */
   deleteItem(item: string, passenger: Passenger) {
     passenger.items.forEach((value, index) => {
-<<<<<<< HEAD
-      if (value == item) {
-=======
-      if (value === item)
->>>>>>> 5e7476b6db76d79bb564d42a62e194e11f944dd3
+      if (value === item) {
         passenger.items.splice(index, 1);
       }
     });
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+    this.getPassengers();
   }
 
+  /**
+   * Edits meal preference
+   * @param passenger 
+   */
   editMealPreference(passenger: Passenger) {
     if (passenger.meal === 'Special') {
       passenger.meal = 'Normal';
@@ -145,76 +168,19 @@ export class SeatMapComponent implements OnInit {
     }
     this.service.editPassenger(passenger.id, passenger).subscribe((data: Passenger) => {
     });
+    this.getPassengers();
   }
 
+  /**
+   * Determines whether seat allocated is
+   * @param x 
+   * @param y 
+   * @returns true if seat allocated 
+   */
   isSeatAllocated(x: string, y: number): boolean {
-    this.seat_number = x.concat(y.toString());
+    this.seatNumber = x.concat(y.toString());
     const len = this.passengers.filter(p => {
       if (p !== null) {
-        return true;
-      } else {
-        return false;
-      }
-    }).length;
-    if (len === 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  isCheckedIn(x: string, y: number): boolean {
-    this.seat_number = x.concat(y.toString());
-    const len = this.passengers.filter(p => {
-      if (p.seat_number === this.seat_number && p.checked_in === 'yes') {
-        return true;
-      } else {
-        return false;
-      }
-    }).length;
-    if (len === 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  hasInfants(x: string, y: number): boolean {
-    this.seat_number = x.concat(y.toString());
-    const len = this.passengers.filter(p => {
-      if (p.seat_number === this.seat_number && p.infants === 'yes') {
-        return true;
-      } else {
-        return false;
-      }
-    }).length;
-    if (len === 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  needWheelChair(x: string, y: number): boolean {
-    this.seat_number = x.concat(y.toString());
-    const len = this.passengers.filter(p => {
-      if (p.seat_number === this.seat_number && p.wheel_chair === 'yes') {
-        return true;
-      } else {
-        return false;
-      }
-    }).length;
-    if (len === 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  mealPreference(x: string, y: number): boolean {
-    this.seat_number = x.concat(y.toString());
-    const len = this.passengers.filter(p => {
-      if (p.seat_number === this.seat_number && p.meal === 'normal') {
         return true;
       } else {
         return false;

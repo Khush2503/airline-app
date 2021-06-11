@@ -12,6 +12,10 @@ export class AdminAuthGuardService implements CanActivate {
     private router: Router
   ) { }
 
+  /**
+   * Determines whether activate can
+   * @returns true if activate 
+   */
   canActivate(): boolean {
     if (this.localStorageService.retrieve('user') !== null) {  // this.localStorageService.retrieve('user').role !== 'admin'
       return true;

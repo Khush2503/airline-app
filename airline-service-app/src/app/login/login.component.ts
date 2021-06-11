@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) { }
 
+  /**
+   * on init
+   */
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       name: [null],
@@ -31,8 +34,10 @@ export class LoginComponent implements OnInit {
 
   }
 
+  /**
+   * Determines whether submit on
+   */
   onSubmit() {
-
     if ( this.loginForm.value.role === 'Admin' )
     {
       if ( this.loginForm.value.username === 'Admin25' && this.loginForm.value.password === 'Admin@2503' ) {
@@ -54,6 +59,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * Sets storage data
+   */
   setStorageData()
   {
     this.localStorageService.store('user', this.loginForm.value);

@@ -30,25 +30,25 @@ describe('InFlightAirlineListComponent', () => {
   });
 
   it('should call getFlightDetails and get response as empty array', fakeAsync(() => {
-    const component = fixture.debugElement.componentInstance;
+    const component1 = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    const spy_getPosts = spyOn(service, 'getFlightDetails').and.callFake(() => {
+    spyOn(service, 'getFlightDetails').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
-    component.getFlightDetails();
+    component1.getFlightDetails();
     tick(100);
-    expect(component.flights).toEqual([]);
+    expect(component1.flights).toEqual([]);
   }));
 
   it('should call getFlightDetailsById and get response as empty array', fakeAsync(() => {
-    const component = fixture.debugElement.componentInstance;
+    const component2 = fixture.debugElement.componentInstance;
     const service = fixture.debugElement.injector.get(ServiceService);
-    let spy_getPosts = spyOn(service,'getFlightDetailsById').and.callFake(() => {
+    spyOn(service, 'getFlightDetailsById').and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
-    component.getFlightDetailsById();
+    component2.getFlightDetailsById();
     tick(100);
-    expect(component.flightsSelected).toEqual([]);
+    expect(component2.flightsSelected).toEqual([]);
   }));
 
 });

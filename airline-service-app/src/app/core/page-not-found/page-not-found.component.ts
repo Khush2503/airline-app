@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,15 +6,15 @@ import { Router } from '@angular/router';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss']
 })
-export class PageNotFoundComponent implements OnInit {
+export class PageNotFoundComponent {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Determines whether click on
+   */
   onClick() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
 }
