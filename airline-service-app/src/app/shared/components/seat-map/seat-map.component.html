@@ -41,8 +41,7 @@
         <td *ngFor="let x of seat; let i=index">
           <tr>
             <button (click)="onSeatView(y,i+1)" class="seat-button btn btn-outline-light mt-2"
-              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails"
-              >
+              type="button" data-bs-toggle="offcanvas" data-bs-target="#seatDetails" aria-controls="seatDetails">
               {{y}}{{i+1}}
             </button>
           </tr>
